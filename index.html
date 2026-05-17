@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Great Barrier Reef: Ecological & Human Perspectives</title>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f4f7f6;
+      font-family: 'Open Sans', sans-serif;
+      color: #333;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 40px 50px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: 700;
+      color: #005f73;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-weight: 300;
+      font-size: 1.2em;
+      color: #0a9396;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      color: #005f73;
+      border-bottom: 2px solid #94d2bd;
+      padding-bottom: 5px;
+      margin-top: 50px;
+      margin-bottom: 30px;
+    }
+
+    p {
+      line-height: 1.6;
+      color: #555;
+    }
+
+    /* --- STRICT GRID & FLEXBOX FIXES --- */
+    
+    .pure-g {
+      display: flex;
+      flex-wrap: nowrap; /* Desktop: keeps elements strictly on one line */
+      align-items: center; /* Vertically centers text beside charts */
+      margin-bottom: 50px;
+    }
+
+    /* Force columns to use padding and allow content to shrink safely */
+    .pure-u-1-1, .pure-u-1-2 {
+      box-sizing: border-box;
+      padding: 0 30px;
+      min-width: 0; /* CRITICAL: Stops large Vega charts from blowing out the flexbox width */
+    }
+
+    /* Explicit width definitions to override any strange flex behaviors */
+    .pure-u-1-2 { width: 50%; }
+    .pure-u-1-1 { width: 100%; }
+
+    /* Visualisation container */
+    .vis-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      /* Removed overflow: hidden so filters don't get cut off! */
+    }
+
+    /* Force Vega-Lite canvases to scale responsively */
+    .vega-embed {
+      width: 100% !important;
+      display: flex !important;
+      flex-direction: column; /* Stack bindings (filters) below or above canvas */
+      align-items: center;
+    }
+
+    .vega-embed canvas, .vega-embed svg {
+      max-width: 100% !important;
+      height: auto !important;
+      object-fit: contain;
+    }
+
+    /* Ensure Vega-Lite interactive filters have room and wrap nicely */
+    .vega-bindings {
+      margin-bottom: 15px !important; /* Space between filter and chart */
+      max-width: 100%;
+      display: flex;
+      flex-wrap: wrap; /* Allows long filters to break to a new line */
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Responsive stacking for smaller screens */
+    @media (max-width: 900px) {
+      .pure-g { flex-wrap: wrap; }
+      .pure-u-1-2 { width: 100% !important; }
+      .text-container { margin-bottom: 30px; }
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+      font-size: 0.9em;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+    
+    <div class="pure-g" style="flex-wrap: wrap;">
+      <div class="pure-u-1-1">
+        <h1>The Great Barrier Reef</h1>
+        <p class="subtitle">A Visual Narrative of Ecological Health and Human Connection</p>
+      </div>
+    </div>
+
+    <h2>1. The Current State of the Reef</h2>
+    <div class="pure-g">
+      <div class="pure-u-1-2 text-container">
+        <h3>Live Coral Overview</h3>
+        <p>Before examining the threats to the Great Barrier Reef (GBR), it is essential to understand its baseline health. This map visualises the <strong>mean live coral percentage</strong> recorded during the most recent Manta Tow surveys for each surveyed reef.</p>
+        <p>Areas heavily saturated in green indicate robust coral health, while red areas flag regions with severely depleted live coral cover, prompting a deeper dive into the ecological stressors responsible.</p>
+      </div>
+      <div class="pure-u-1-2 vis-container" id="vis-v2"></div>
+    </div>
+
+    <h2>2. Ecological Stressors: Climate and Predators</h2>
+    <div class="pure-g" style="flex-wrap: wrap;">
+      <div class="pure-u-1-1 text-container" style="padding-bottom: 20px;">
+        <h3>Compound Stressors: Temperature and Chlorophyll</h3>
+        <p>Coral health is heavily dictated by oceanic conditions. High Sea Surface Temperatures (SST) trigger widespread coral bleaching, while agricultural runoff (measured here by Chlorophyll-a concentration) degrades water quality and blocks vital sunlight. Use the interactive tools below to explore these dual stressors across different years and months.</p>
+      </div>
+      <div class="pure-u-1-1 vis-container" id="vis-v3v4"></div>
+    </div>
+
+    <div class="pure-g">
+      <div class="pure-u-1-2 vis-container" id="vis-v1"></div>
+      <div class="pure-u-1-2 text-container">
+        <h3>Biological Threats: Crown-of-Thorns Starfish</h3>
+        <p>Poor water quality (like high chlorophyll) often leads to outbreaks of the coral-eating <strong>Crown-of-Thorns Starfish (COTS)</strong>. This map tracks the devastating biological impact of COTS over the years.</p>
+        <p>The size of the circles represents the mean COTS per tow, while the intense red colour scale reveals the resulting <strong>dead coral percentage</strong>. Use the slider to track historical outbreaks.</p>
+      </div>
+    </div>
+
+    <h2>3. Human Connection: How We Use and Value the Reef</h2>
+    <div class="pure-g" style="flex-wrap: wrap;">
+      <div class="pure-u-1-1 text-container" style="padding-bottom: 20px;">
+        <h3>Recreational Use by Region</h3>
+        <p>The Great Barrier Reef is not just an ecological wonder; it is a vital recreational hub for Australians. Click on the different Natural Resource Management (NRM) regions on the map below to discover what local residents are doing in their coastal waters (from fishing and boating to snorkelling).</p>
+      </div>
+      <div class="pure-u-1-1 vis-container" id="vis-v8"></div>
+    </div>
+
+    <div class="pure-g">
+      <div class="pure-u-1-2 text-container">
+        <h3>Why Do We Value the Reef?</h3>
+        <p>Public surveys reveal that our appreciation for the reef goes far beyond recreation. This dumbbell chart compares how people who have visited the reef vs. those who haven't score different reef values (such as aesthetic beauty, biodiversity, and economic importance).</p>
+        <p>Notice how direct experience with the reef shifts these average scores, highlighting the power of ecotourism in building environmental appreciation.</p>
+      </div>
+      <div class="pure-u-1-2 vis-container" id="vis-v7"></div>
+    </div>
+
+    <h2>4. Public Perception and Protective Action</h2>
+    <div class="pure-g">
+      <div class="pure-u-1-2 vis-container" id="vis-v5"></div>
+      <div class="pure-u-1-2 text-container">
+        <h3>Perceived Threats to the Reef</h3>
+        <p>Despite scientific consensus on climate change being the ultimate threat, public perception often varies. This bar chart ranks the severity of perceived threats out of 10. You can filter the data to see if actually visiting the reef changes a person's understanding of what endangers it most.</p>
+      </div>
+    </div>
+
+    <div class="pure-g">
+      <div class="pure-u-1-2 text-container">
+        <h3>Does Experience Drive Action?</h3>
+        <p>Finally, does living near or visiting the reef encourage protective behaviour? This heatmap explores the relationship between how frequently someone visits the reef and whether they have taken independent or formal action to protect it.</p>
+        <p>The concentration of respondents reveals whether physical proximity and experience translate into tangible environmental stewardship.</p>
+      </div>
+      <div class="pure-u-1-2 vis-container" id="vis-v6"></div>
+    </div>
+
+    <div class="footer">
+      <p>Created for FIT2179 Data Visualisation 2. Data sources: Australian Institute of Marine Science (AIMS), NOAA Coral Reef Watch, and SELTMP 2025.</p>
+    </div>
+
+  </div> <script type="text/javascript">
+    // Assign paths to variables
+    const v1_cots = "V1_propsymbmap_COTS_impacts_coral_death.vg.json";
+    const v2_livecoral = "V2_dotmap_livecoral_for_most_recent_yr.vg.json";
+    const v3v4_chlorotemp = "V3V4_choropleth_chlorophyll_temp.vg.json";
+    const v5_threats = "V5_barchart_perceived_threats.vg.json";
+    const v6_action = "V6_heatmap_actiononGBR.vg.json";
+    const v7_values = "V7_dumbell_GBRvalue.vg.json";
+    const v8_recreation = "V8_recreational_use.vg.json";
+
+    // Embed visualizations
+    vegaEmbed('#vis-v2', v2_livecoral, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis-v3v4', v3v4_chlorotemp, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis-v1', v1_cots, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis-v8', v8_recreation, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis-v7', v7_values, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis-v5', v5_threats, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis-v6', v6_action, { "actions": false }).catch(console.error);
+  </script>
+
+</body>
+</html>
