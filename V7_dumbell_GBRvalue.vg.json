@@ -1,0 +1,71 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Why do we value the Reef? Visitors vs. Non-Visitors",
+    "subtitle": "Average survey scores (1-10) placed on different reef values",
+    "fontSize": 16
+  },
+  "width": 500,
+  "height": 300,
+  "data": {
+    "url": "reef_values_dumbbell.csv"
+  },
+  "encoding": {
+    "y": {
+      "field": "Value_Category",
+      "type": "nominal",
+      "title": null,
+      "sort": "-x",
+      "axis": {
+        "labelFontSize": 13,
+        "ticks": false,
+        "grid": true,
+        "domain": false
+      }
+    },
+    "x": {
+      "field": "Score",
+      "type": "quantitative",
+      "title": "Average Score out of 10",
+      "scale": {"domain": [6, 10]}
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "color": "#d3d3d3",
+        "size": 3
+      },
+      "encoding": {
+        "detail": {
+          "field": "Value_Category",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 200,
+        "opacity": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "Visited_Reef",
+          "type": "nominal",
+          "title": "Reef Experience",
+          "scale": {
+            "domain": ["Has Visited", "Never Visited"],
+            "range": ["#ff7f0e", "#1f77b4"]
+          }
+        },
+        "tooltip": [
+          {"field": "Value_Category", "type": "nominal", "title": "Value Concept"},
+          {"field": "Visited_Reef", "type": "nominal", "title": "Respondent Group"},
+          {"field": "Score", "type": "quantitative", "title": "Avg Score", "format": ".2f"}
+        ]
+      }
+    }
+  ]
+}

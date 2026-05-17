@@ -1,0 +1,64 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Perceived Threats to the Great Barrier Reef",
+    "subtitle": "Scores out of 10 based on public survey responses",
+    "fontSize": 16
+  },
+  "width": 600,
+  "height": 400,
+  "data": {
+    "url": "threat_perception_summary.csv"
+  },
+  "params": [
+    {
+      "name": "Reef_Visitor_Filter",
+      "value": "Yes",
+      "bind": {
+        "input": "select",
+        "options": ["Yes", "No"],
+        "name": "Has the respondent visited the Reef? "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.visited_reef == Reef_Visitor_Filter"
+    },
+    {
+      "aggregate": [
+        {"op": "mean", "field": "Threat_Score", "as": "Average_Score"}
+      ],
+      "groupby": ["Threat"]
+    }
+  ],
+  "mark": {
+    "type": "bar",
+    "cornerRadiusEnd": 4
+  },
+  "encoding": {
+    "y": {
+      "field": "Threat",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null,
+      "axis": {"labelFontSize": 12}
+    },
+    "x": {
+      "field": "Average_Score",
+      "type": "quantitative",
+      "title": "Average Threat Score (1-10)",
+      "scale": {"domain": [0, 10]}
+    },
+    "color": {
+      "field": "Average_Score",
+      "type": "quantitative",
+      "scale": {"scheme": "oranges"},
+      "legend": null
+    },
+    "tooltip": [
+      {"field": "Threat", "type": "nominal", "title": "Threat Type"},
+      {"field": "Average_Score", "type": "quantitative", "title": "Avg Score", "format": ".1f"}
+    ]
+  }
+}

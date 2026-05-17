@@ -1,0 +1,72 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Experience vs. Action: Does Visiting the Reef Drive Protection?",
+    "subtitle": "Number of respondents by visit frequency and self-reported protective actions",
+    "fontSize": 16
+  },
+  "width": 500,
+  "height": 300,
+  "data": {
+    "url": "experience_vs_action_heatmap.csv"
+  },
+  "mark": {
+    "type": "rect",
+    "tooltip": true,
+    "cornerRadius": 2
+  },
+  "encoding": {
+    "x": {
+      "field": "visit_freq",
+      "type": "nominal",
+      "title": "How often did you visit the GBR in the last 12 months?",
+      "sort": [
+        "Not at all",
+        "Once or twice",
+        "Every few months",
+        "Approximately monthly",
+        "Approximately fortnightly",
+        "Approximately weekly",
+        "More than once a week"
+      ],
+      "axis": {
+        "labelAngle": -45,
+        "labelPadding": 10
+      }
+    },
+    "y": {
+      "field": "actions_helpGBR",
+      "type": "nominal",
+      "title": "Have you taken action to protect the GBR?",
+      "sort": [
+        "No action taken",
+        "Unsure",
+        "Yes, independently",
+        "Yes, formally",
+        "Yes, mix of both"
+      ]
+    },
+    "color": {
+      "field": "Respondent_Count",
+      "type": "quantitative",
+      "title": "Total Respondents",
+      "scale": {
+        "scheme": "tealblues"
+      }
+    },
+    "tooltip": [
+      {"field": "visit_freq", "type": "nominal", "title": "Visit Frequency"},
+      {"field": "actions_helpGBR", "type": "nominal", "title": "Action Taken"},
+      {"field": "Respondent_Count", "type": "quantitative", "title": "Number of People"}
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "domain": false,
+      "ticks": false
+    }
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Compound Stressors on the Great Barrier Reef",
+    "subtitle": "Comparing Sea Surface Temperature and Chlorophyll-a Runoff",
+    "fontSize": 20,
+    "subtitleFontSize": 14,
+    "anchor": "middle",
+    "offset": 20
+  },
+  "config": {
+    "view": {"stroke": "transparent"}
+  },
+  "params": [
+    {
+      "name": "Year_Selection",
+      "value": 2016,
+      "bind": {
+        "input": "select",
+        "options": [2003, 2016, 2021],
+        "name": "Select Year: "
+      }
+    },
+    {
+      "name": "Month_Selection",
+      "value": 2,
+      "bind": {
+        "input": "range",
+        "min": 1,
+        "max": 12,
+        "step": 1,
+        "name": "Select Month (Jan=1, Dec=12): "
+      }
+    }
+  ],
+  "resolve": {
+    "scale": {"color": "independent"}
+  },
+  "hconcat": [
+    {
+      "title": "Sea Surface Temperature (°C)",
+      "width": 380,
+      "height": 600,
+      "projection": {"type": "mercator"},
+      "layer": [
+        {
+          "data": {
+            "url": "tiny_temperature.csv"
+          },
+          "transform": [
+            {"calculate": "toDate(datum.time)", "as": "date_time"},
+            {"filter": "isValid(datum['sea_surface_temperature'])"},
+            {"filter": "year(datum.date_time) == Year_Selection"},
+            {"filter": "month(datum.date_time) + 1 == Month_Selection"}
+          ],
+          "mark": {
+            "type": "square",
+            "size": 400,
+            "opacity": 0.85
+          },
+          "encoding": {
+            "longitude": {"field": "longitude", "type": "quantitative"},
+            "latitude": {"field": "latitude", "type": "quantitative"},
+            "color": {
+              "field": "sea_surface_temperature",
+              "type": "quantitative",
+              "scale": {
+                "scheme": "inferno",
+                "domain": [22, 32] 
+              },
+              "title": "Temperature (°C)"
+            },
+            "tooltip": [
+              {"field": "longitude", "type": "quantitative", "format": ".2f", "title": "Longitude"},
+              {"field": "latitude", "type": "quantitative", "format": ".2f", "title": "Latitude"},
+              {"field": "sea_surface_temperature", "type": "quantitative", "format": ".1f", "title": "Temperature (°C)"},
+              {"field": "date_time", "type": "temporal", "format": "%b %Y", "title": "Date"}
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "gbr_map_topojson.json",
+            "format": {
+              "type": "topojson",
+              "feature": "ALL REEFS - Great_Barrier_Reef_Features_20_-4783920091376539044"
+            }
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0.2
+          }
+        }
+      ]
+    },
+    {
+      "title": "Chlorophyll-a Concentration (mg/m³)",
+      "width": 380,
+      "height": 600,
+      "projection": {"type": "mercator"},
+      "layer": [
+        {
+          "data": {
+            "url": "tiny_chlorophyll.csv"
+          },
+          "transform": [
+            {"calculate": "toDate(datum.time)", "as": "date_time"},
+            {"filter": "isValid(datum['chlor_a (mg m-3)'])"},
+            {"filter": "year(datum.date_time) == Year_Selection"},
+            {"filter": "month(datum.date_time) + 1 == Month_Selection"}
+          ],
+          "mark": {
+            "type": "square",
+            "size": 400,
+            "opacity": 0.85
+          },
+          "encoding": {
+            "longitude": {"field": "longitude", "type": "quantitative"},
+            "latitude": {"field": "latitude", "type": "quantitative"},
+            "color": {
+              "field": "chlor_a (mg m-3)",
+              "type": "quantitative",
+              "scale": {
+                "scheme": "greens",
+                "type": "log"
+              },
+              "title": "Chlorophyll-a (log)"
+            },
+            "tooltip": [
+              {"field": "longitude", "type": "quantitative", "format": ".2f", "title": "Longitude"},
+              {"field": "latitude", "type": "quantitative", "format": ".2f", "title": "Latitude"},
+              {"field": "chlor_a (mg m-3)", "type": "quantitative", "format": ".3f", "title": "Chlorophyll-a"},
+              {"field": "date_time", "type": "temporal", "format": "%b %Y", "title": "Date"}
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "gbr_map_topojson.json",
+            "format": {
+              "type": "topojson",
+              "feature": "ALL REEFS - Great_Barrier_Reef_Features_20_-4783920091376539044"
+            }
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "#ffffff",
+            "stroke": "#000000",
+            "strokeWidth": 0.2
+          }
+        }
+      ]
+    }
+  ]
+}

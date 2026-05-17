@@ -1,0 +1,86 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 800,
+  "projection": {
+    "type": "mercator"
+  },
+  "params": [
+    {
+      "name": "Selected_Year",
+      "value": 2023,
+      "bind": {
+        "input": "range",
+        "min": 1993,
+        "max": 2023,
+        "step": 1,
+        "name": "Select Report Year: "
+      }
+    }
+  ],
+
+  "layer": [
+    {
+      "description": "Base layer: Reef Features",
+      "data": {
+        "url": "gbr_map_topojson.json",
+        "format": {
+          "type": "topojson",
+          "feature": "ALL REEFS - Great_Barrier_Reef_Features_20_-4783920091376539044"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#b2d8d8",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.2
+      }
+    },
+    {
+      "description": "Data layer: Manta Tow Surveys",
+      "data": {
+        "url": "manta-tow-by-reef.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.REPORT_YEAR == Selected_Year"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "opacity": 0.8,
+        "stroke": "black",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "longitude": {
+          "field": "LONGITUDE",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "LATITUDE",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "MEAN_DEAD_CORAL",
+          "type": "quantitative",
+          "scale": {"scheme": "reds"},
+          "title": "Mean Dead Coral %"
+        },
+        "size": {
+          "field": "MEAN_COTS_PER_TOW",
+          "type": "quantitative",
+          "title": "Mean COTS per Tow",
+          "scale": {"range": [20, 500]}
+        },
+        "tooltip": [
+          {"field": "REEF_NAME", "type": "nominal", "title": "Reef Name"},
+          {"field": "SECTOR", "type": "nominal", "title": "Sector"},
+          {"field": "REPORT_YEAR", "type": "nominal", "title": "Year"},
+          {"field": "MEAN_DEAD_CORAL", "type": "quantitative", "title": "Dead Coral (%)"},
+          {"field": "MEAN_COTS_PER_TOW", "type": "quantitative", "title": "Mean COTS per Tow"}
+        ]
+      }
+    }
+  ]
+}

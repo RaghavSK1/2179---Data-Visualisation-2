@@ -1,0 +1,114 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Recreational Use of the Great Barrier Reef by Region",
+    "subtitle": "Click on an NRM region on the map to see local activity rates",
+    "fontSize": 16
+  },
+  "data": {
+    "url": "coastal_recreation_map_data.csv"
+  },
+  "hconcat": [
+    {
+      "title": "Queensland NRM Regions",
+      "width": 300,
+      "height": 400,
+      "layer": [
+        {
+          "data": {
+            "url": "gbr_map_topojson.json",
+            "format": {
+              "type": "topojson",
+              "feature": "NRM_Terrestrial_and_Marine_Regions_GBR_GDA2020_0_4650415230811652790"
+            }
+          },
+          "transform": [
+            {
+              "lookup": "properties.NAME", 
+              "from": {
+                "data": {"url": "coastal_recreation_map_data.csv"},
+                "key": "Region",
+                "fields": ["Region"]
+              }
+            }
+          ],
+          "params": [
+            {
+              "name": "RegionSelection",
+              "select": {"type": "point", "fields": ["Region"]},
+              "value": {"Region": "Wet Tropics"} 
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "stroke": "white",
+            "strokeWidth": 1,
+            "cursor": "pointer"
+          },
+          "encoding": {
+            "color": {
+              "condition": {
+                "param": "RegionSelection",
+                "value": "#1f77b4"
+              },
+              "value": "#d3d3d3"
+            },
+            "tooltip": [
+              {"field": "properties.NAME", "type": "nominal", "title": "Region"}
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "gbr_map_topojson.json",
+            "format": {
+              "type": "topojson",
+              "feature": "ALL REEFS - Great_Barrier_Reef_Features_20_-4783920091376539044"
+            }
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "#a1d99b",
+            "stroke": "#000000",
+            "strokeWidth": 0.2
+          }
+        }
+      ]
+    },
+    {
+      "title": "Local Participation Rate (%)",
+      "width": 350,
+      "height": 300,
+      "transform": [
+        {"filter": {"param": "RegionSelection"}}
+      ],
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 4,
+        "color": "#ff7f0e"
+      },
+      "encoding": {
+        "y": {
+          "field": "Activity",
+          "type": "nominal",
+          "sort": "-x",
+          "title": null,
+          "axis": {"labelFontSize": 12}
+        },
+        "x": {
+          "field": "Participation_Rate",
+          "type": "quantitative",
+          "title": "Percentage of Respondents",
+          "scale": {"domain": [0, 100]}
+        },
+        "tooltip": [
+          {"field": "Activity", "type": "nominal"},
+          {"field": "Participation_Rate", "type": "quantitative", "title": "% Participated"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": "transparent"}
+  }
+}
