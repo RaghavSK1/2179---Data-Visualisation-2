@@ -1,0 +1,73 @@
+Region,Threat,mean_score,n
+Burdekin,Agricultural Runoff,3.9341425343815595,6
+Burdekin,Climate Change,4.1200263232144465,6
+Burdekin,Coastal Development,3.966760395692526,6
+Burdekin,Crown of Thorns,3.926661846622121,6
+Burdekin,Extreme Weather,3.6950886311073496,6
+Burdekin,Fishing,4.41703965902727,6
+Burdekin,Management/Regulation,3.4976610493375913,6
+Burdekin,Marine Debris/Rubbish,4.251819540097213,6
+Burdekin,Mining,3.9602923447860157,6
+Burdekin,Population Growth,3.627384105181708,6
+Burdekin,Ports and Shipping,3.958204015065044,6
+Burdekin,Tourism,2.7861380435107876,6
+Burnett Mary,Agricultural Runoff,4.18731977028348,6
+Burnett Mary,Climate Change,4.13015334799609,6
+Burnett Mary,Coastal Development,3.931326368523949,6
+Burnett Mary,Crown of Thorns,5.0833791544477025,6
+Burnett Mary,Extreme Weather,3.6567540322580645,6
+Burnett Mary,Fishing,4.132212243401759,6
+Burnett Mary,Management/Regulation,3.1345277370478986,6
+Burnett Mary,Marine Debris/Rubbish,4.316969086021506,6
+Burnett Mary,Mining,4.293487292277615,6
+Burnett Mary,Population Growth,3.6119959677419353,6
+Burnett Mary,Ports and Shipping,3.6984940127077226,6
+Burnett Mary,Tourism,3.551783968719453,6
+Cape York,Agricultural Runoff,4.325,2
+Cape York,Climate Change,3.65,2
+Cape York,Coastal Development,3.975,2
+Cape York,Crown of Thorns,3.925,2
+Cape York,Extreme Weather,3.7,2
+Cape York,Fishing,3.975,2
+Cape York,Management/Regulation,3.4,2
+Cape York,Marine Debris/Rubbish,4.075,2
+Cape York,Mining,3.475,2
+Cape York,Population Growth,3.375,2
+Cape York,Ports and Shipping,3.75,2
+Cape York,Tourism,2.625,2
+Fitzroy,Agricultural Runoff,4.261319698819698,6
+Fitzroy,Climate Change,4.20898199023199,6
+Fitzroy,Coastal Development,4.23818426943427,6
+Fitzroy,Crown of Thorns,4.5250432437932435,6
+Fitzroy,Extreme Weather,3.972883597883598,6
+Fitzroy,Fishing,4.28998778998779,6
+Fitzroy,Management/Regulation,3.7959020146520146,6
+Fitzroy,Marine Debris/Rubbish,4.402930402930402,6
+Fitzroy,Mining,3.8434574684574687,6
+Fitzroy,Population Growth,3.871693121693122,6
+Fitzroy,Ports and Shipping,4.0607448107448105,6
+Fitzroy,Tourism,3.4732905982905984,6
+Mackay Whitsunday,Agricultural Runoff,3.9028682170542637,5
+Mackay Whitsunday,Climate Change,3.4291472868217054,5
+Mackay Whitsunday,Coastal Development,4.057002583979328,5
+Mackay Whitsunday,Crown of Thorns,4.109715762273902,5
+Mackay Whitsunday,Extreme Weather,3.586976744186046,5
+Mackay Whitsunday,Fishing,4.059362618432386,5
+Mackay Whitsunday,Management/Regulation,4.1323600344530576,5
+Mackay Whitsunday,Marine Debris/Rubbish,4.278725236864771,5
+Mackay Whitsunday,Mining,3.278466838931956,5
+Mackay Whitsunday,Population Growth,3.8810077519379846,5
+Mackay Whitsunday,Ports and Shipping,3.7092678725236867,5
+Mackay Whitsunday,Tourism,3.4019465977605514,5
+Wet Tropics,Agricultural Runoff,4.201072003453751,6
+Wet Tropics,Climate Change,3.7791961470778452,6
+Wet Tropics,Coastal Development,3.9478535056498676,6
+Wet Tropics,Crown of Thorns,4.382273977892958,6
+Wet Tropics,Extreme Weather,3.604206139008413,6
+Wet Tropics,Fishing,3.9422172346889472,6
+Wet Tropics,Management/Regulation,3.5345039912914213,6
+Wet Tropics,Marine Debris/Rubbish,3.9855354157022553,6
+Wet Tropics,Mining,3.81949071509338,6
+Wet Tropics,Population Growth,3.4102210282497594,6
+Wet Tropics,Ports and Shipping,3.4625416435840424,6
+Wet Tropics,Tourism,3.4125558515190684,6
