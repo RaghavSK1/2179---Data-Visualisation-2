@@ -1,0 +1,435 @@
+gender,visited_reef,NRM code,Threat,Threat_Score
+Female,No,Burdekin,Agricultural Runoff,4.428571428571429
+Female,No,Burdekin,Climate Change,3.857142857142857
+Female,No,Burdekin,Coastal Development,3.857142857142857
+Female,No,Burdekin,Crown of Thorns,4.904761904761905
+Female,No,Burdekin,Extreme Weather,4.0476190476190474
+Female,No,Burdekin,Fishing,4.380952380952381
+Female,No,Burdekin,Management/Regulation,5.380952380952381
+Female,No,Burdekin,Marine Debris/Rubbish,4.428571428571429
+Female,No,Burdekin,Mining,4.714285714285714
+Female,No,Burdekin,Population Growth,3.857142857142857
+Female,No,Burdekin,Ports and Shipping,4.428571428571429
+Female,No,Burdekin,Tourism,3.0
+Female,No,Burdekin,threat_bleaching,4.142857142857143
+Female,No,Burdekin,threat_heatwaves,4.285714285714286
+Female,No,Burnett Mary,Agricultural Runoff,4.5
+Female,No,Burnett Mary,Climate Change,4.05
+Female,No,Burnett Mary,Coastal Development,4.35
+Female,No,Burnett Mary,Crown of Thorns,5.15
+Female,No,Burnett Mary,Extreme Weather,3.7
+Female,No,Burnett Mary,Fishing,4.375
+Female,No,Burnett Mary,Management/Regulation,4.2
+Female,No,Burnett Mary,Marine Debris/Rubbish,4.4
+Female,No,Burnett Mary,Mining,4.9
+Female,No,Burnett Mary,Population Growth,3.875
+Female,No,Burnett Mary,Ports and Shipping,4.45
+Female,No,Burnett Mary,Tourism,3.525
+Female,No,Burnett Mary,threat_bleaching,4.575
+Female,No,Burnett Mary,threat_heatwaves,4.275
+Female,No,Fitzroy,Agricultural Runoff,4.083333333333333
+Female,No,Fitzroy,Climate Change,4.333333333333333
+Female,No,Fitzroy,Coastal Development,3.7916666666666665
+Female,No,Fitzroy,Crown of Thorns,4.583333333333333
+Female,No,Fitzroy,Extreme Weather,3.8333333333333335
+Female,No,Fitzroy,Fishing,4.083333333333333
+Female,No,Fitzroy,Management/Regulation,3.75
+Female,No,Fitzroy,Marine Debris/Rubbish,4.208333333333333
+Female,No,Fitzroy,Mining,3.625
+Female,No,Fitzroy,Population Growth,3.2916666666666665
+Female,No,Fitzroy,Ports and Shipping,3.6666666666666665
+Female,No,Fitzroy,Tourism,3.0833333333333335
+Female,No,Fitzroy,threat_bleaching,4.166666666666667
+Female,No,Fitzroy,threat_heatwaves,4.125
+Female,No,Mackay Whitsunday,Agricultural Runoff,4.75
+Female,No,Mackay Whitsunday,Climate Change,4.0
+Female,No,Mackay Whitsunday,Coastal Development,5.0
+Female,No,Mackay Whitsunday,Crown of Thorns,4.5
+Female,No,Mackay Whitsunday,Extreme Weather,4.5
+Female,No,Mackay Whitsunday,Fishing,4.5
+Female,No,Mackay Whitsunday,Management/Regulation,4.75
+Female,No,Mackay Whitsunday,Marine Debris/Rubbish,5.0
+Female,No,Mackay Whitsunday,Mining,4.5
+Female,No,Mackay Whitsunday,Population Growth,4.75
+Female,No,Mackay Whitsunday,Ports and Shipping,4.5
+Female,No,Mackay Whitsunday,Tourism,4.5
+Female,No,Mackay Whitsunday,threat_bleaching,4.75
+Female,No,Mackay Whitsunday,threat_heatwaves,4.25
+Female,No,Wet Tropics,Agricultural Runoff,6.333333333333333
+Female,No,Wet Tropics,Climate Change,3.8333333333333335
+Female,No,Wet Tropics,Coastal Development,4.166666666666667
+Female,No,Wet Tropics,Crown of Thorns,6.0
+Female,No,Wet Tropics,Extreme Weather,3.5
+Female,No,Wet Tropics,Fishing,4.166666666666667
+Female,No,Wet Tropics,Management/Regulation,3.5
+Female,No,Wet Tropics,Marine Debris/Rubbish,4.333333333333333
+Female,No,Wet Tropics,Mining,4.5
+Female,No,Wet Tropics,Population Growth,4.333333333333333
+Female,No,Wet Tropics,Ports and Shipping,3.6666666666666665
+Female,No,Wet Tropics,Tourism,3.8333333333333335
+Female,No,Wet Tropics,threat_bleaching,4.166666666666667
+Female,No,Wet Tropics,threat_heatwaves,3.5
+Female,Yes,Burdekin,Agricultural Runoff,4.202127659574468
+Female,Yes,Burdekin,Climate Change,4.163120567375887
+Female,Yes,Burdekin,Coastal Development,4.170212765957447
+Female,Yes,Burdekin,Crown of Thorns,4.329787234042553
+Female,Yes,Burdekin,Extreme Weather,3.9609929078014185
+Female,Yes,Burdekin,Fishing,4.205673758865248
+Female,Yes,Burdekin,Management/Regulation,3.8191489361702127
+Female,Yes,Burdekin,Marine Debris/Rubbish,4.382978723404255
+Female,Yes,Burdekin,Mining,4.166666666666667
+Female,Yes,Burdekin,Population Growth,3.9361702127659575
+Female,Yes,Burdekin,Ports and Shipping,3.872340425531915
+Female,Yes,Burdekin,Tourism,3.152482269503546
+Female,Yes,Burdekin,threat_bleaching,4.372340425531915
+Female,Yes,Burdekin,threat_heatwaves,4.329787234042553
+Female,Yes,Burnett Mary,Agricultural Runoff,4.38125
+Female,Yes,Burnett Mary,Climate Change,4.11875
+Female,Yes,Burnett Mary,Coastal Development,4.26875
+Female,Yes,Burnett Mary,Crown of Thorns,4.31875
+Female,Yes,Burnett Mary,Extreme Weather,3.89375
+Female,Yes,Burnett Mary,Fishing,4.25625
+Female,Yes,Burnett Mary,Management/Regulation,3.91875
+Female,Yes,Burnett Mary,Marine Debris/Rubbish,4.49375
+Female,Yes,Burnett Mary,Mining,4.075
+Female,Yes,Burnett Mary,Population Growth,3.89375
+Female,Yes,Burnett Mary,Ports and Shipping,4.04375
+Female,Yes,Burnett Mary,Tourism,3.425
+Female,Yes,Burnett Mary,threat_bleaching,4.35
+Female,Yes,Burnett Mary,threat_heatwaves,4.325
+Female,Yes,Cape York,Agricultural Runoff,4.75
+Female,Yes,Cape York,Climate Change,4.0
+Female,Yes,Cape York,Coastal Development,4.25
+Female,Yes,Cape York,Crown of Thorns,4.75
+Female,Yes,Cape York,Extreme Weather,4.5
+Female,Yes,Cape York,Fishing,4.25
+Female,Yes,Cape York,Management/Regulation,3.5
+Female,Yes,Cape York,Marine Debris/Rubbish,4.25
+Female,Yes,Cape York,Mining,3.25
+Female,Yes,Cape York,Population Growth,3.75
+Female,Yes,Cape York,Ports and Shipping,4.5
+Female,Yes,Cape York,Tourism,2.75
+Female,Yes,Cape York,threat_bleaching,4.75
+Female,Yes,Cape York,threat_heatwaves,4.75
+Female,Yes,Fitzroy,Agricultural Runoff,4.180555555555555
+Female,Yes,Fitzroy,Climate Change,4.229166666666667
+Female,Yes,Fitzroy,Coastal Development,4.215277777777778
+Female,Yes,Fitzroy,Crown of Thorns,4.548611111111111
+Female,Yes,Fitzroy,Extreme Weather,3.861111111111111
+Female,Yes,Fitzroy,Fishing,4.25
+Female,Yes,Fitzroy,Management/Regulation,4.354166666666667
+Female,Yes,Fitzroy,Marine Debris/Rubbish,4.458333333333333
+Female,Yes,Fitzroy,Mining,4.069444444444445
+Female,Yes,Fitzroy,Population Growth,3.8194444444444446
+Female,Yes,Fitzroy,Ports and Shipping,3.75
+Female,Yes,Fitzroy,Tourism,3.1666666666666665
+Female,Yes,Fitzroy,threat_bleaching,4.458333333333333
+Female,Yes,Fitzroy,threat_heatwaves,4.541666666666667
+Female,Yes,Mackay Whitsunday,Agricultural Runoff,4.066666666666666
+Female,Yes,Mackay Whitsunday,Climate Change,3.933333333333333
+Female,Yes,Mackay Whitsunday,Coastal Development,3.9555555555555557
+Female,Yes,Mackay Whitsunday,Crown of Thorns,4.155555555555556
+Female,Yes,Mackay Whitsunday,Extreme Weather,3.8666666666666667
+Female,Yes,Mackay Whitsunday,Fishing,4.185185185185185
+Female,Yes,Mackay Whitsunday,Management/Regulation,3.962962962962963
+Female,Yes,Mackay Whitsunday,Marine Debris/Rubbish,4.237037037037037
+Female,Yes,Mackay Whitsunday,Mining,3.6148148148148147
+Female,Yes,Mackay Whitsunday,Population Growth,3.7333333333333334
+Female,Yes,Mackay Whitsunday,Ports and Shipping,3.837037037037037
+Female,Yes,Mackay Whitsunday,Tourism,3.4074074074074074
+Female,Yes,Mackay Whitsunday,threat_bleaching,4.177777777777778
+Female,Yes,Mackay Whitsunday,threat_heatwaves,4.051851851851852
+Female,Yes,Wet Tropics,Agricultural Runoff,4.292161520190024
+Female,Yes,Wet Tropics,Climate Change,4.182897862232779
+Female,Yes,Wet Tropics,Coastal Development,4.156769596199525
+Female,Yes,Wet Tropics,Crown of Thorns,4.244655581947743
+Female,Yes,Wet Tropics,Extreme Weather,3.866983372921615
+Female,Yes,Wet Tropics,Fishing,4.1876484560570075
+Female,Yes,Wet Tropics,Management/Regulation,3.679334916864608
+Female,Yes,Wet Tropics,Marine Debris/Rubbish,4.332541567695962
+Female,Yes,Wet Tropics,Mining,4.180522565320665
+Female,Yes,Wet Tropics,Population Growth,3.795724465558195
+Female,Yes,Wet Tropics,Ports and Shipping,3.7624703087885987
+Female,Yes,Wet Tropics,Tourism,3.2921615201900236
+Female,Yes,Wet Tropics,threat_bleaching,4.3087885985748215
+Female,Yes,Wet Tropics,threat_heatwaves,4.275534441805226
+Male,No,Burdekin,Agricultural Runoff,3.375
+Male,No,Burdekin,Climate Change,3.375
+Male,No,Burdekin,Coastal Development,3.25
+Male,No,Burdekin,Crown of Thorns,3.625
+Male,No,Burdekin,Extreme Weather,2.875
+Male,No,Burdekin,Fishing,4.0
+Male,No,Burdekin,Management/Regulation,3.25
+Male,No,Burdekin,Marine Debris/Rubbish,3.75
+Male,No,Burdekin,Mining,2.75
+Male,No,Burdekin,Population Growth,2.625
+Male,No,Burdekin,Ports and Shipping,3.25
+Male,No,Burdekin,Tourism,2.75
+Male,No,Burdekin,threat_bleaching,3.75
+Male,No,Burdekin,threat_heatwaves,3.0
+Male,No,Burnett Mary,Agricultural Runoff,3.8636363636363638
+Male,No,Burnett Mary,Climate Change,3.6363636363636362
+Male,No,Burnett Mary,Coastal Development,3.727272727272727
+Male,No,Burnett Mary,Crown of Thorns,4.136363636363637
+Male,No,Burnett Mary,Extreme Weather,3.5
+Male,No,Burnett Mary,Fishing,3.8636363636363638
+Male,No,Burnett Mary,Management/Regulation,2.9545454545454546
+Male,No,Burnett Mary,Marine Debris/Rubbish,4.0
+Male,No,Burnett Mary,Mining,3.8181818181818183
+Male,No,Burnett Mary,Population Growth,3.5
+Male,No,Burnett Mary,Ports and Shipping,3.8181818181818183
+Male,No,Burnett Mary,Tourism,3.409090909090909
+Male,No,Burnett Mary,threat_bleaching,4.045454545454546
+Male,No,Burnett Mary,threat_heatwaves,3.727272727272727
+Male,No,Fitzroy,Agricultural Runoff,3.923076923076923
+Male,No,Fitzroy,Climate Change,3.8461538461538463
+Male,No,Fitzroy,Coastal Development,4.076923076923077
+Male,No,Fitzroy,Crown of Thorns,3.923076923076923
+Male,No,Fitzroy,Extreme Weather,3.0
+Male,No,Fitzroy,Fishing,3.6923076923076925
+Male,No,Fitzroy,Management/Regulation,3.230769230769231
+Male,No,Fitzroy,Marine Debris/Rubbish,3.8461538461538463
+Male,No,Fitzroy,Mining,3.4615384615384617
+Male,No,Fitzroy,Population Growth,3.0
+Male,No,Fitzroy,Ports and Shipping,3.769230769230769
+Male,No,Fitzroy,Tourism,2.923076923076923
+Male,No,Fitzroy,threat_bleaching,4.230769230769231
+Male,No,Fitzroy,threat_heatwaves,3.3076923076923075
+Male,No,Mackay Whitsunday,Agricultural Runoff,4.0
+Male,No,Mackay Whitsunday,Climate Change,3.3333333333333335
+Male,No,Mackay Whitsunday,Coastal Development,3.8333333333333335
+Male,No,Mackay Whitsunday,Crown of Thorns,5.333333333333333
+Male,No,Mackay Whitsunday,Extreme Weather,2.8333333333333335
+Male,No,Mackay Whitsunday,Fishing,4.166666666666667
+Male,No,Mackay Whitsunday,Management/Regulation,4.0
+Male,No,Mackay Whitsunday,Marine Debris/Rubbish,4.333333333333333
+Male,No,Mackay Whitsunday,Mining,3.0
+Male,No,Mackay Whitsunday,Population Growth,3.8333333333333335
+Male,No,Mackay Whitsunday,Ports and Shipping,4.0
+Male,No,Mackay Whitsunday,Tourism,3.3333333333333335
+Male,No,Mackay Whitsunday,threat_bleaching,3.6666666666666665
+Male,No,Mackay Whitsunday,threat_heatwaves,3.6666666666666665
+Male,No,Wet Tropics,Agricultural Runoff,4.333333333333333
+Male,No,Wet Tropics,Climate Change,4.0
+Male,No,Wet Tropics,Coastal Development,4.333333333333333
+Male,No,Wet Tropics,Crown of Thorns,4.333333333333333
+Male,No,Wet Tropics,Extreme Weather,4.333333333333333
+Male,No,Wet Tropics,Fishing,4.333333333333333
+Male,No,Wet Tropics,Management/Regulation,3.6666666666666665
+Male,No,Wet Tropics,Marine Debris/Rubbish,4.666666666666667
+Male,No,Wet Tropics,Mining,5.0
+Male,No,Wet Tropics,Population Growth,4.0
+Male,No,Wet Tropics,Ports and Shipping,4.333333333333333
+Male,No,Wet Tropics,Tourism,4.0
+Male,No,Wet Tropics,threat_bleaching,4.333333333333333
+Male,No,Wet Tropics,threat_heatwaves,4.666666666666667
+Male,Yes,Burdekin,Agricultural Runoff,3.5991561181434597
+Male,Yes,Burdekin,Climate Change,3.3248945147679323
+Male,Yes,Burdekin,Coastal Development,3.523206751054852
+Male,Yes,Burdekin,Crown of Thorns,3.70042194092827
+Male,Yes,Burdekin,Extreme Weather,3.2869198312236287
+Male,Yes,Burdekin,Fishing,3.9156118143459917
+Male,Yes,Burdekin,Management/Regulation,3.5358649789029535
+Male,Yes,Burdekin,Marine Debris/Rubbish,3.949367088607595
+Male,Yes,Burdekin,Mining,3.130801687763713
+Male,Yes,Burdekin,Population Growth,3.345991561181435
+Male,Yes,Burdekin,Ports and Shipping,3.19831223628692
+Male,Yes,Burdekin,Tourism,2.8143459915611815
+Male,Yes,Burdekin,threat_bleaching,3.49789029535865
+Male,Yes,Burdekin,threat_heatwaves,3.5569620253164556
+Male,Yes,Burnett Mary,Agricultural Runoff,3.879032258064516
+Male,Yes,Burnett Mary,Climate Change,3.475806451612903
+Male,Yes,Burnett Mary,Coastal Development,3.7419354838709675
+Male,Yes,Burnett Mary,Crown of Thorns,3.8951612903225805
+Male,Yes,Burnett Mary,Extreme Weather,3.346774193548387
+Male,Yes,Burnett Mary,Fishing,3.7983870967741935
+Male,Yes,Burnett Mary,Management/Regulation,3.2338709677419355
+Male,Yes,Burnett Mary,Marine Debris/Rubbish,4.008064516129032
+Male,Yes,Burnett Mary,Mining,3.467741935483871
+Male,Yes,Burnett Mary,Population Growth,3.403225806451613
+Male,Yes,Burnett Mary,Ports and Shipping,3.379032258064516
+Male,Yes,Burnett Mary,Tourism,2.9516129032258065
+Male,Yes,Burnett Mary,threat_bleaching,3.7419354838709675
+Male,Yes,Burnett Mary,threat_heatwaves,3.5806451612903225
+Male,Yes,Cape York,Agricultural Runoff,3.9
+Male,Yes,Cape York,Climate Change,3.3
+Male,Yes,Cape York,Coastal Development,3.7
+Male,Yes,Cape York,Crown of Thorns,3.1
+Male,Yes,Cape York,Extreme Weather,2.9
+Male,Yes,Cape York,Fishing,3.7
+Male,Yes,Cape York,Management/Regulation,3.3
+Male,Yes,Cape York,Marine Debris/Rubbish,3.9
+Male,Yes,Cape York,Mining,3.7
+Male,Yes,Cape York,Population Growth,3.0
+Male,Yes,Cape York,Ports and Shipping,3.0
+Male,Yes,Cape York,Tourism,2.5
+Male,Yes,Cape York,threat_bleaching,3.4
+Male,Yes,Cape York,threat_heatwaves,3.2
+Male,Yes,Fitzroy,Agricultural Runoff,3.380952380952381
+Male,Yes,Fitzroy,Climate Change,2.8452380952380953
+Male,Yes,Fitzroy,Coastal Development,3.3452380952380953
+Male,Yes,Fitzroy,Crown of Thorns,4.095238095238095
+Male,Yes,Fitzroy,Extreme Weather,3.142857142857143
+Male,Yes,Fitzroy,Fishing,3.7142857142857144
+Male,Yes,Fitzroy,Management/Regulation,3.4404761904761907
+Male,Yes,Fitzroy,Marine Debris/Rubbish,3.9047619047619047
+Male,Yes,Fitzroy,Mining,2.9047619047619047
+Male,Yes,Fitzroy,Population Growth,3.119047619047619
+Male,Yes,Fitzroy,Ports and Shipping,3.1785714285714284
+Male,Yes,Fitzroy,Tourism,2.6666666666666665
+Male,Yes,Fitzroy,threat_bleaching,3.3214285714285716
+Male,Yes,Fitzroy,threat_heatwaves,3.2738095238095237
+Male,Yes,Mackay Whitsunday,Agricultural Runoff,3.697674418604651
+Male,Yes,Mackay Whitsunday,Climate Change,3.2790697674418605
+Male,Yes,Mackay Whitsunday,Coastal Development,3.496124031007752
+Male,Yes,Mackay Whitsunday,Crown of Thorns,3.75968992248062
+Male,Yes,Mackay Whitsunday,Extreme Weather,3.5348837209302326
+Male,Yes,Mackay Whitsunday,Fishing,3.8449612403100777
+Male,Yes,Mackay Whitsunday,Management/Regulation,3.3488372093023258
+Male,Yes,Mackay Whitsunday,Marine Debris/Rubbish,4.023255813953488
+Male,Yes,Mackay Whitsunday,Mining,3.0775193798449614
+Male,Yes,Mackay Whitsunday,Population Growth,3.488372093023256
+Male,Yes,Mackay Whitsunday,Ports and Shipping,3.2093023255813953
+Male,Yes,Mackay Whitsunday,Tourism,2.9689922480620154
+Male,Yes,Mackay Whitsunday,threat_bleaching,3.5426356589147288
+Male,Yes,Mackay Whitsunday,threat_heatwaves,3.5348837209302326
+Male,Yes,Wet Tropics,Agricultural Runoff,3.747603833865815
+Male,Yes,Wet Tropics,Climate Change,3.4089456869009584
+Male,Yes,Wet Tropics,Coastal Development,3.5303514376996805
+Male,Yes,Wet Tropics,Crown of Thorns,3.7156549520766773
+Male,Yes,Wet Tropics,Extreme Weather,3.4249201277955272
+Male,Yes,Wet Tropics,Fishing,3.7156549520766773
+Male,Yes,Wet Tropics,Management/Regulation,3.3610223642172525
+Male,Yes,Wet Tropics,Marine Debris/Rubbish,3.830670926517572
+Male,Yes,Wet Tropics,Mining,3.236421725239617
+Male,Yes,Wet Tropics,Population Growth,3.3322683706070286
+Male,Yes,Wet Tropics,Ports and Shipping,3.012779552715655
+Male,Yes,Wet Tropics,Tourism,2.8498402555910545
+Male,Yes,Wet Tropics,threat_bleaching,3.523961661341853
+Male,Yes,Wet Tropics,threat_heatwaves,3.523961661341853
+Other/Non-binary,No,Burdekin,Agricultural Runoff,4.0
+Other/Non-binary,No,Burdekin,Climate Change,5.0
+Other/Non-binary,No,Burdekin,Coastal Development,4.0
+Other/Non-binary,No,Burdekin,Crown of Thorns,3.0
+Other/Non-binary,No,Burdekin,Extreme Weather,3.0
+Other/Non-binary,No,Burdekin,Fishing,5.0
+Other/Non-binary,No,Burdekin,Management/Regulation,3.0
+Other/Non-binary,No,Burdekin,Marine Debris/Rubbish,5.0
+Other/Non-binary,No,Burdekin,Mining,4.0
+Other/Non-binary,No,Burdekin,Population Growth,3.0
+Other/Non-binary,No,Burdekin,Ports and Shipping,4.0
+Other/Non-binary,No,Burdekin,Tourism,3.0
+Other/Non-binary,No,Burdekin,threat_bleaching,5.0
+Other/Non-binary,No,Burdekin,threat_heatwaves,4.0
+Other/Non-binary,No,Burnett Mary,Agricultural Runoff,4.5
+Other/Non-binary,No,Burnett Mary,Climate Change,4.5
+Other/Non-binary,No,Burnett Mary,Coastal Development,3.5
+Other/Non-binary,No,Burnett Mary,Crown of Thorns,4.0
+Other/Non-binary,No,Burnett Mary,Extreme Weather,4.5
+Other/Non-binary,No,Burnett Mary,Fishing,4.5
+Other/Non-binary,No,Burnett Mary,Management/Regulation,2.5
+Other/Non-binary,No,Burnett Mary,Marine Debris/Rubbish,5.0
+Other/Non-binary,No,Burnett Mary,Mining,6.5
+Other/Non-binary,No,Burnett Mary,Population Growth,4.0
+Other/Non-binary,No,Burnett Mary,Ports and Shipping,3.5
+Other/Non-binary,No,Burnett Mary,Tourism,6.0
+Other/Non-binary,No,Burnett Mary,threat_bleaching,7.0
+Other/Non-binary,No,Burnett Mary,threat_heatwaves,5.0
+Other/Non-binary,Yes,Burnett Mary,Agricultural Runoff,4.0
+Other/Non-binary,Yes,Burnett Mary,Climate Change,5.0
+Other/Non-binary,Yes,Burnett Mary,Coastal Development,4.0
+Other/Non-binary,Yes,Burnett Mary,Crown of Thorns,9.0
+Other/Non-binary,Yes,Burnett Mary,Extreme Weather,3.0
+Other/Non-binary,Yes,Burnett Mary,Fishing,4.0
+Other/Non-binary,Yes,Burnett Mary,Management/Regulation,2.0
+Other/Non-binary,Yes,Burnett Mary,Marine Debris/Rubbish,4.0
+Other/Non-binary,Yes,Burnett Mary,Mining,3.0
+Other/Non-binary,Yes,Burnett Mary,Population Growth,3.0
+Other/Non-binary,Yes,Burnett Mary,Ports and Shipping,3.0
+Other/Non-binary,Yes,Burnett Mary,Tourism,2.0
+Other/Non-binary,Yes,Burnett Mary,threat_bleaching,4.0
+Other/Non-binary,Yes,Burnett Mary,threat_heatwaves,3.0
+Other/Non-binary,Yes,Fitzroy,Agricultural Runoff,5.0
+Other/Non-binary,Yes,Fitzroy,Climate Change,5.0
+Other/Non-binary,Yes,Fitzroy,Coastal Development,5.0
+Other/Non-binary,Yes,Fitzroy,Crown of Thorns,5.0
+Other/Non-binary,Yes,Fitzroy,Extreme Weather,5.0
+Other/Non-binary,Yes,Fitzroy,Fishing,5.0
+Other/Non-binary,Yes,Fitzroy,Management/Regulation,5.0
+Other/Non-binary,Yes,Fitzroy,Marine Debris/Rubbish,5.0
+Other/Non-binary,Yes,Fitzroy,Mining,5.0
+Other/Non-binary,Yes,Fitzroy,Population Growth,5.0
+Other/Non-binary,Yes,Fitzroy,Ports and Shipping,5.0
+Other/Non-binary,Yes,Fitzroy,Tourism,5.0
+Other/Non-binary,Yes,Fitzroy,threat_bleaching,5.0
+Other/Non-binary,Yes,Fitzroy,threat_heatwaves,5.0
+Other/Non-binary,Yes,Wet Tropics,Agricultural Runoff,4.0
+Other/Non-binary,Yes,Wet Tropics,Climate Change,5.0
+Other/Non-binary,Yes,Wet Tropics,Coastal Development,5.0
+Other/Non-binary,Yes,Wet Tropics,Crown of Thorns,4.5
+Other/Non-binary,Yes,Wet Tropics,Extreme Weather,4.0
+Other/Non-binary,Yes,Wet Tropics,Fishing,5.0
+Other/Non-binary,Yes,Wet Tropics,Management/Regulation,3.5
+Other/Non-binary,Yes,Wet Tropics,Marine Debris/Rubbish,4.5
+Other/Non-binary,Yes,Wet Tropics,Mining,3.5
+Other/Non-binary,Yes,Wet Tropics,Population Growth,3.0
+Other/Non-binary,Yes,Wet Tropics,Ports and Shipping,4.0
+Other/Non-binary,Yes,Wet Tropics,Tourism,4.5
+Other/Non-binary,Yes,Wet Tropics,threat_bleaching,4.5
+Other/Non-binary,Yes,Wet Tropics,threat_heatwaves,4.5
+Prefer not to say,Yes,Burdekin,Agricultural Runoff,4.0
+Prefer not to say,Yes,Burdekin,Climate Change,5.0
+Prefer not to say,Yes,Burdekin,Coastal Development,5.0
+Prefer not to say,Yes,Burdekin,Crown of Thorns,4.0
+Prefer not to say,Yes,Burdekin,Extreme Weather,5.0
+Prefer not to say,Yes,Burdekin,Fishing,5.0
+Prefer not to say,Yes,Burdekin,Management/Regulation,2.0
+Prefer not to say,Yes,Burdekin,Marine Debris/Rubbish,4.0
+Prefer not to say,Yes,Burdekin,Mining,5.0
+Prefer not to say,Yes,Burdekin,Population Growth,5.0
+Prefer not to say,Yes,Burdekin,Ports and Shipping,5.0
+Prefer not to say,Yes,Burdekin,Tourism,2.0
+Prefer not to say,Yes,Burdekin,threat_bleaching,5.0
+Prefer not to say,Yes,Burdekin,threat_heatwaves,5.0
+Prefer not to say,Yes,Fitzroy,Agricultural Runoff,5.0
+Prefer not to say,Yes,Fitzroy,Climate Change,5.0
+Prefer not to say,Yes,Fitzroy,Coastal Development,5.0
+Prefer not to say,Yes,Fitzroy,Crown of Thorns,5.0
+Prefer not to say,Yes,Fitzroy,Extreme Weather,5.0
+Prefer not to say,Yes,Fitzroy,Fishing,5.0
+Prefer not to say,Yes,Fitzroy,Management/Regulation,3.0
+Prefer not to say,Yes,Fitzroy,Marine Debris/Rubbish,5.0
+Prefer not to say,Yes,Fitzroy,Mining,4.0
+Prefer not to say,Yes,Fitzroy,Population Growth,5.0
+Prefer not to say,Yes,Fitzroy,Ports and Shipping,5.0
+Prefer not to say,Yes,Fitzroy,Tourism,4.0
+Prefer not to say,Yes,Fitzroy,threat_bleaching,5.0
+Prefer not to say,Yes,Fitzroy,threat_heatwaves,5.0
+Prefer not to say,Yes,Mackay Whitsunday,Agricultural Runoff,3.0
+Prefer not to say,Yes,Mackay Whitsunday,Climate Change,2.6
+Prefer not to say,Yes,Mackay Whitsunday,Coastal Development,4.0
+Prefer not to say,Yes,Mackay Whitsunday,Crown of Thorns,2.8
+Prefer not to say,Yes,Mackay Whitsunday,Extreme Weather,3.2
+Prefer not to say,Yes,Mackay Whitsunday,Fishing,3.6
+Prefer not to say,Yes,Mackay Whitsunday,Management/Regulation,4.6
+Prefer not to say,Yes,Mackay Whitsunday,Marine Debris/Rubbish,3.8
+Prefer not to say,Yes,Mackay Whitsunday,Mining,2.2
+Prefer not to say,Yes,Mackay Whitsunday,Population Growth,3.6
+Prefer not to say,Yes,Mackay Whitsunday,Ports and Shipping,3.0
+Prefer not to say,Yes,Mackay Whitsunday,Tourism,2.8
+Prefer not to say,Yes,Mackay Whitsunday,threat_bleaching,2.8
+Prefer not to say,Yes,Mackay Whitsunday,threat_heatwaves,2.6
+Prefer not to say,Yes,Wet Tropics,Agricultural Runoff,2.5
+Prefer not to say,Yes,Wet Tropics,Climate Change,2.25
+Prefer not to say,Yes,Wet Tropics,Coastal Development,2.5
+Prefer not to say,Yes,Wet Tropics,Crown of Thorns,3.5
+Prefer not to say,Yes,Wet Tropics,Extreme Weather,2.5
+Prefer not to say,Yes,Wet Tropics,Fishing,2.25
+Prefer not to say,Yes,Wet Tropics,Management/Regulation,3.5
+Prefer not to say,Yes,Wet Tropics,Marine Debris/Rubbish,2.25
+Prefer not to say,Yes,Wet Tropics,Mining,2.5
+Prefer not to say,Yes,Wet Tropics,Population Growth,2.0
+Prefer not to say,Yes,Wet Tropics,Ports and Shipping,2.0
+Prefer not to say,Yes,Wet Tropics,Tourism,2.0
+Prefer not to say,Yes,Wet Tropics,threat_bleaching,2.75
+Prefer not to say,Yes,Wet Tropics,threat_heatwaves,3.75
