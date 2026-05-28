@@ -195,6 +195,8 @@ body {
 .cols-2-1   { grid-template-columns: 2fr 1fr; }
 .cols-1-2   { grid-template-columns: 1fr 2fr; }
 .cols-1-1-1 { grid-template-columns: 1fr 1fr 1fr; }
+/* Equal-height variant — both cells stretch to match the taller neighbour */
+.cols-match  { align-items: stretch; }
 
 /* ── STORY TEXT PANEL ── */
 .story-text {
@@ -483,11 +485,11 @@ body {
     <h2>One of Earth's <span class="teal-em">Most Diverse</span> Ecosystems</h2>
   </div>
   <div class="section-body">
-    <div class="cols cols-3-2">
+    <div class="cols cols-1-1 cols-match">
       <div class="chart-card">
         <div class="chart-card-label">Chart 1 — Bubble Scatter</div>
         <div class="chart-card-title">Species Richness Across 18 Taxonomic Groups</div>
-        <div class="chart-card-desc">Bubble size = known species count. Colour = 2024 conservation condition. Use the dropdown to filter by category. Hover for details; click a bubble to highlight it.</div>
+        <div class="chart-card-desc">X-axis = continuous condition score (2024 Outlook Report). Y-axis = adaptability score (1–10), reflecting reproductive rate, habitat flexibility, thermal tolerance and diet breadth. Bubble size = known species count. Colour = condition rating. Hover a bubble for details.</div>
         <div id="vis-species-richness"></div>
       </div>
       <div class="story-text">
@@ -516,7 +518,7 @@ body {
   </div>
   <div class="section-body">
 
-    <div class="cols cols-2-3">
+    <div class="cols cols-1-1">
       <div class="story-text">
         <h3>Stressors have compounded since the late 1990s</h3>
         <p>Since 1993, the GBR has experienced six mass bleaching events, three major Crown-of-Thorns Starfish (COTS) outbreak waves, and multiple severe cyclones. Each disturbance leaves the reef with less time to recover before the next arrives.</p>
@@ -550,7 +552,7 @@ body {
   <div class="section-body">
 
     <!-- Row 1: map + narrative -->
-    <div class="cols cols-3-2">
+    <div class="cols cols-1-1">
       <div class="chart-card">
         <div class="chart-card-label">Map 3 — Proportional Symbol Map</div>
         <div class="chart-card-title">Most Recent Live Coral Cover per Reef Site</div>
@@ -599,17 +601,8 @@ body {
   </div>
   <div class="section-body">
 
-    <!-- Row 1: narrative + stat card -->
+    <!-- Row 1: stat card + narrative -->
     <div class="cols cols-3-2">
-      <div class="story-text">
-        <h3>Two stressors that strike together</h3>
-        <p>Coral bleaching is triggered when sea surface temperatures exceed the local maximum by even 1–2°C for several weeks. But warming alone does not tell the full story. <strong>Agricultural runoff from Queensland's catchments</strong> floods inshore reefs with excess nutrients (measured as Chlorophyll-a concentration), weakening corals' capacity to survive thermal stress.</p>
-        <p>Use the controls below to explore how these two stressors — sea surface temperature and Chlorophyll-a — were distributed across the reef in <strong>two pivotal years</strong>: 2003 (baseline) and 2021 (post-COVID recovery). Comparing these years directly reveals how dramatically both stressors have intensified over two decades.</p>
-        <div class="key-facts">
-          <div class="key-fact">🌡 February 2016 SST: the hottest February on record for the northern GBR at that time</div>
-          <div class="key-fact">🌿 Inshore Chlorophyll-a levels are 3–4× higher than offshore — a direct legacy of land clearing</div>
-        </div>
-      </div>
       <div class="stat-card">
         <div class="stat-card-header">Key figures — stressor intensity</div>
         <div class="stat-block red">
@@ -628,40 +621,98 @@ body {
           <div class="stat-block-desc">of reefs surveyed showed some bleaching in 2016</div>
         </div>
       </div>
+      <div class="story-text">
+        <h3>Two stressors that strike together</h3>
+        <p>Coral bleaching is triggered when sea surface temperatures exceed the local maximum by even 1–2°C for several weeks. But warming alone does not tell the full story. <strong>Agricultural runoff from Queensland's catchments</strong> floods inshore reefs with excess nutrients (measured as Chlorophyll-a concentration), weakening corals' capacity to survive thermal stress.</p>
+        <p>Use the controls below to explore how these two stressors — sea surface temperature and Chlorophyll-a — were distributed across the reef in <strong>two pivotal years</strong>: 2003 (baseline) and 2021 (post-COVID recovery). Comparing these years directly reveals how dramatically both stressors have intensified over two decades.</p>
+        <div class="key-facts">
+          <div class="key-fact">🌡 February 2016 SST: the hottest February on record for the northern GBR at that time</div>
+          <div class="key-fact">🌿 Inshore Chlorophyll-a levels are 3–4× higher than offshore — a direct legacy of land clearing</div>
+        </div>
+      </div>
     </div>
 
-    <!-- Row 2: full-width dual map -->
-    <div class="chart-card">
-      <div class="chart-card-label">Maps 4a & 4b — Linked Bin Maps (Shared Year & Month Filter)</div>
-      <div class="chart-card-title">Sea Surface Temperature and Chlorophyll-a Concentration</div>
-      <div class="chart-card-desc">Use the year and month buttons to explore both stressors simultaneously. Warmer colours = higher temperature (°C) or higher chlorophyll (mg m⁻³). The white overlay shows the reef structure. Select <strong>2003</strong> for the baseline and <strong>2021</strong> to see how stressors have intensified.</div>
-      <div class="map-controls">
-        <div class="map-control-row">
-          <span class="map-control-label">Year</span>
-          <div style="display:flex; gap:6px;">
-            <button class="sst-year-btn active" data-year="2003">2003</button>
-            <button class="sst-year-btn"        data-year="2021">2021</button>
+    <!-- Row 2: dual map (left) + controls and context (right) -->
+    <div class="cols cols-3-2">
+      <!-- LEFT: the two maps -->
+      <div class="chart-card">
+        <div class="chart-card-label">Maps 4a &amp; 4b &mdash; Linked Bin Maps (Shared Year &amp; Month Filter)</div>
+        <div class="chart-card-title">Sea Surface Temperature and Chlorophyll-a Concentration</div>
+        <div id="vis-sst-chla"></div>
+        <!-- HTML legends — mirroring the hconcat layout exactly -->
+        <div style="display:flex; gap:30px; margin-top:8px; width:700px;">
+          <!-- SST legend -->
+          <div style="width:340px; flex-shrink:0;">
+            <div style="font-size:0.68rem; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.1em; color:#c0392b; text-align:center; margin-bottom:5px;">Temp (°C)</div>
+            <div style="height:12px; border-radius:3px; background:linear-gradient(to right,#000004,#3b0f70,#8c2981,#de4968,#fe9f6d,#fcfdbf);"></div>
+            <div style="display:flex; justify-content:space-between; font-size:0.67rem; color:var(--neutral-500); margin-top:3px; font-family:var(--font-mono);">
+              <span>22°</span><span>24°</span><span>26°</span><span>28°</span><span>30°</span><span>32°</span>
+            </div>
           </div>
-        </div>
-        <div class="map-control-row">
-          <span class="map-control-label">Month</span>
-          <div style="display:flex; gap:5px; flex-wrap:wrap;">
-            <button class="sst-month-btn"        data-month="1">Jan</button>
-            <button class="sst-month-btn active" data-month="2">Feb</button>
-            <button class="sst-month-btn"        data-month="3">Mar</button>
-            <button class="sst-month-btn"        data-month="4">Apr</button>
-            <button class="sst-month-btn"        data-month="5">May</button>
-            <button class="sst-month-btn"        data-month="6">Jun</button>
-            <button class="sst-month-btn"        data-month="7">Jul</button>
-            <button class="sst-month-btn"        data-month="8">Aug</button>
-            <button class="sst-month-btn"        data-month="9">Sep</button>
-            <button class="sst-month-btn"        data-month="10">Oct</button>
-            <button class="sst-month-btn"        data-month="11">Nov</button>
-            <button class="sst-month-btn"        data-month="12">Dec</button>
+          <!-- Chla legend -->
+          <div style="width:340px; flex-shrink:0;">
+            <div style="font-size:0.68rem; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.1em; color:#166534; text-align:center; margin-bottom:5px;">Chlorophyll-a (mg m⁻³, log scale)</div>
+            <div style="height:12px; border-radius:3px; background:linear-gradient(to right,#f7fcf5,#caeac3,#7bc87c,#2a924a,#00441b);"></div>
+            <div style="display:flex; justify-content:space-between; font-size:0.67rem; color:var(--neutral-500); margin-top:3px; font-family:var(--font-mono);">
+              <span>0.05</span><span>0.1</span><span>0.3</span><span>0.7</span><span>1.5</span><span>2.0</span>
+            </div>
           </div>
         </div>
       </div>
-      <div id="vis-sst-chla"></div>
+      <!-- RIGHT: controls + interpretive context -->
+      <div class="chart-card" style="display:flex; flex-direction:column; gap:20px;">
+        <!-- Controls panel -->
+        <div>
+          <div class="chart-card-label" style="margin-bottom:10px;">Filter Maps</div>
+          <div class="map-controls">
+            <div class="map-control-row">
+              <span class="map-control-label">Year</span>
+              <div style="display:flex; gap:6px;">
+                <button class="sst-year-btn active" data-year="2003">2003</button>
+                <button class="sst-year-btn" data-year="2021">2021</button>
+              </div>
+            </div>
+            <div class="map-control-row">
+              <span class="map-control-label">Month</span>
+              <div style="display:flex; gap:5px; flex-wrap:wrap;">
+                <button class="sst-month-btn" data-month="1">Jan</button>
+                <button class="sst-month-btn active" data-month="2">Feb</button>
+                <button class="sst-month-btn" data-month="3">Mar</button>
+                <button class="sst-month-btn" data-month="4">Apr</button>
+                <button class="sst-month-btn" data-month="5">May</button>
+                <button class="sst-month-btn" data-month="6">Jun</button>
+                <button class="sst-month-btn" data-month="7">Jul</button>
+                <button class="sst-month-btn" data-month="8">Aug</button>
+                <button class="sst-month-btn" data-month="9">Sep</button>
+                <button class="sst-month-btn" data-month="10">Oct</button>
+                <button class="sst-month-btn" data-month="11">Nov</button>
+                <button class="sst-month-btn" data-month="12">Dec</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- How to read -->
+        <div>
+          <div class="chart-card-label" style="margin-bottom:6px;">How to read</div>
+          <p style="font-size:0.82rem; color:var(--neutral-600); line-height:1.6; margin:0;">Warmer colours = higher temperature (&deg;C) on the SST map. Deeper greens = higher Chlorophyll-a (mg m&sup3;) on the runoff map. The grey overlay marks reef structure.</p>
+        </div>
+        <!-- Baseline vs now -->
+        <div>
+          <div class="chart-card-label" style="margin-bottom:8px;">2003 &rarr; 2021 Comparison</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div class="stat-block red" style="padding:10px 14px;">
+              <div class="stat-block-label">Thermal trend</div>
+              <div class="stat-block-num" style="font-size:1.4rem;">&uarr; SST</div>
+              <div class="stat-block-desc">Northern GBR waters measurably warmer by 2021</div>
+            </div>
+            <div class="stat-block green" style="padding:10px 14px;">
+              <div class="stat-block-label">Runoff trend</div>
+              <div class="stat-block-num" style="font-size:1.4rem;">&uarr; Chla</div>
+              <div class="stat-block-desc">Inshore Chl-a 3&ndash;5&times; higher than offshore by 2021</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Row 3: compound stress scatter + narrative -->
@@ -717,12 +768,24 @@ body {
       </div>
     </div>
 
-    <!-- Row 2: employment chart full-width -->
-    <div class="chart-card">
-      <div class="chart-card-label">Chart 5b — Bar Chart</div>
-      <div class="chart-card-title">Reef-Dependent Employment by Sector</div>
-      <div class="chart-card-desc">Full-time equivalent jobs directly and indirectly dependent on the reef. Use the year slider to track job losses during COVID and the recovery since 2022.</div>
-      <div id="vis-employment"></div>
+    <!-- Row 2: connected scatterplot — coral cover vs visitor numbers -->
+    <div class="cols cols-2-3">
+      <div class="story-text">
+        <h3>The reef's health is the economy's health</h3>
+        <p>The stacked area above shows revenue over time — but time is not the cause. The underlying driver is the <strong>condition of the reef itself</strong>. When coral cover is high and the reef is visually spectacular, visitors come. When bleaching strips the reef of colour and life, they reconsider.</p>
+        <p>The connected scatterplot traces a decade of reef health against visitor numbers. Each step along the path is one year. The <strong>top-right is where we want to be</strong> — healthy reef, thriving economy. The bleaching years of 2016–17 pulled the path hard to the left; COVID then pushed it down. The 2022–23 recovery pulled it back — but only as far as the reef allowed.</p>
+        <div class="key-facts">
+          <div class="key-fact">⚠ Reef-wide coral cover dropped from ~29% to ~19% between 2015 and 2017 — visitor numbers fell by 400,000 in the same window</div>
+          <div class="key-fact teal">🪸 The 2022–23 coral recovery to ~33% coincided with the strongest post-COVID visitor rebound — the reef and the economy move together</div>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-label">Chart 5b — Small Multiples</div>
+        <div class="chart-card-title">Reef Health vs. Visitor Numbers, 2014–2023</div>
+        <div class="chart-card-desc">Two panels, one x-axis. Top: GBR-wide live coral cover (%). Bottom: annual reef visitors (millions). Bleaching years shaded red; COVID years blue. The parallel shapes reveal how closely the two move together.</div>
+        <div id="vis-coral-panel1" style="margin-bottom:6px;"></div>
+        <div id="vis-coral-panel2"></div>
+      </div>
     </div>
 
   </div>
@@ -771,19 +834,19 @@ body {
   </div>
   <div class="section-body">
 
-    <!-- Row 1: narrative + threat severity bar chart -->
-    <div class="cols cols-2-3">
-      <div class="story-text">
-        <h3>A gap between science and public perception</h3>
-        <p>While scientists identify <strong>ocean warming and bleaching</strong> as the single greatest threat to the GBR, public surveys reveal a more complex picture. Respondents ranked Crown-of-Thorns Starfish, marine debris, and agricultural runoff as the top perceived threats — placing climate change further down the list.</p>
-        <p>Crucially, <strong>people who have visited the reef</strong> show a different threat profile: they are more aware of bleaching and heatwave risk, and rate agricultural runoff higher. This suggests that direct experience does shift environmental understanding.</p>
-        <p>Use the filter below to compare threat perceptions between reef visitors and non-visitors.</p>
-      </div>
+    <!-- Row 1: threat severity bar chart + narrative -->
+    <div class="cols cols-3-2">
       <div class="chart-card">
         <div class="chart-card-label">Chart 7a — Filtered Bar Chart</div>
         <div class="chart-card-title">Perceived Threat Severity by Reef Visitor Status</div>
         <div class="chart-card-desc">Average perceived threat score (out of 10) from SELTMP 2025 survey. Use the dropdown to switch between reef visitors and non-visitors. Colour encodes severity (higher = deeper orange).</div>
         <div id="vis-threats"></div>
+      </div>
+      <div class="story-text">
+        <h3>A gap between science and public perception</h3>
+        <p>While scientists identify <strong>ocean warming and bleaching</strong> as the single greatest threat to the GBR, public surveys reveal a more complex picture. Respondents ranked Crown-of-Thorns Starfish, marine debris, and agricultural runoff as the top perceived threats — placing climate change further down the list.</p>
+        <p>Crucially, <strong>people who have visited the reef</strong> show a different threat profile: they are more aware of bleaching and heatwave risk, and rate agricultural runoff higher. This suggests that direct experience does shift environmental understanding.</p>
+        <p>Use the filter below to compare threat perceptions between reef visitors and non-visitors.</p>
       </div>
     </div>
 
@@ -901,10 +964,9 @@ const SECTOR_NAMES = {CA:'Cairns',CB:'Capricorn-Bunker',CG:'Cape Grenville',
 const vis_species_richness = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 400,
-  "data": {"url": "gbr_species_groups.csv"},
+  "height": 420,
+  "data": {"url": "gbr_species_groups_v5.csv"},
   "transform": [
-    {"calculate": "log(datum.KnownSpecies) / log(10)", "as": "LogSpecies"},
     {"calculate": "datum.TrendScore > 0 ? '↑ Improving' : datum.TrendScore < 0 ? '↓ Declining' : '→ Stable'", "as": "TrendLabel"},
     {"filter": "cat_select === 'All' || datum.Category === cat_select"}
   ],
@@ -917,61 +979,102 @@ const vis_species_richness = {
         "options": ["All","Coral","Fish","Invertebrates","Plants/Algae","Plankton","Reptiles","Birds","Mammals"],
         "name": "Filter by category: "
       }
-    },
+    }
   ],
   "layer": [
+    {
+      "data": {"values": [
+        {"x1": 0.75, "x2": 1.75, "band": "Very Poor"},
+        {"x1": 1.75, "x2": 2.75, "band": "Poor"},
+        {"x1": 2.75, "x2": 3.75, "band": "Good"},
+        {"x1": 3.75, "x2": 4.5,  "band": "Very Good"}
+      ]},
+      "mark": {"type": "rect", "opacity": 0.04},
+      "encoding": {
+        "x":  {"field": "x1", "type": "quantitative", "scale": {"domain": [0.75, 4.5]}},
+        "x2": {"field": "x2", "type": "quantitative"},
+        "y":  {"value": 0},
+        "y2": {"value": 420},
+        "color": {
+          "field": "band", "type": "nominal",
+          "scale": {
+            "domain": ["Very Poor","Poor","Good","Very Good"],
+            "range":  ["#c0392b","#e67e22","#84cc16","#2ec71a"]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "data": {"values": [
+        {"lx": 1.25,  "band": "Very Poor"},
+        {"lx": 2.25,  "band": "Poor"},
+        {"lx": 3.25,  "band": "Good"},
+        {"lx": 4.125, "band": "Very Good"}
+      ]},
+      "mark": {"type": "text", "fontSize": 8.5, "fontStyle": "italic", "opacity": 0.38, "dy": 12, "align": "center"},
+      "encoding": {
+        "x": {"field": "lx", "type": "quantitative", "scale": {"domain": [0.75, 4.5]}},
+        "y": {"value": 0},
+        "text": {"field": "band"},
+        "color": {
+          "field": "band", "type": "nominal",
+          "scale": {
+            "domain": ["Very Poor","Poor","Good","Very Good"],
+            "range":  ["#c0392b","#b45309","#3f6212","#166534"]
+          },
+          "legend": null
+        }
+      }
+    },
     {
       "params": [
         {
           "name": "grp_hover",
-          "select": {
-            "type": "point",
-            "on": "mouseover",
-            "nearest": true,
-            "clear": "mouseout"
-          }
-        },
+          "select": {"type": "point", "on": "mouseover", "nearest": true, "clear": "mouseout"}
+        }
       ],
       "mark": {"type": "circle", "stroke": "white", "strokeWidth": 1.5},
       "encoding": {
         "x": {
           "field": "XPos",
           "type": "quantitative",
-          "title": "Conservation condition (2024 Outlook Report) →",
-          "scale": {"domain": [-0.6, 4.6]},
+          "title": "Condition score (2024 Outlook Report)",
+          "scale": {"domain": [0.75, 4.5]},
           "axis": {
-            "values": [0, 1, 2, 3, 4],
-            "labelExpr": "datum.value === 0 ? 'Unknown' : datum.value === 1 ? 'Very Poor' : datum.value === 2 ? 'Poor' : datum.value === 3 ? 'Good' : 'Very Good'",
-            "grid": true, "gridColor": "#f1f5f9",
-            "domain": false, "ticks": false,
-            "labelFontSize": 11
+            "tickCount": 8,
+            "format": ".1f",
+            "grid": false,
+            "domain": true, "ticks": true,
+            "labelFontSize": 10,
+            "titleFontSize": 11
           }
         },
         "y": {
-          "field": "LogSpecies",
+          "field": "AdaptScore",
           "type": "quantitative",
-          "title": "Known species (log₁₀ scale)",
-          "scale": {"domain": [-0.3, 4.4]},
+          "title": "Adaptability score (1–10)",
+          "scale": {"domain": [1.5, 10]},
           "axis": {
-            "values": [0, 1, 2, 3, 4],
-            "labelExpr": "datum.value === 0 ? '1' : datum.value === 1 ? '10' : datum.value === 2 ? '100' : datum.value === 3 ? '1,000' : '10,000'",
+            "tickCount": 9,
+            "format": ".1f",
             "grid": true, "gridColor": "#f1f5f9",
             "domain": false, "ticks": false,
-            "labelFontSize": 11
+            "labelFontSize": 10, "titleFontSize": 11
           }
         },
         "size": {
           "field": "KnownSpecies",
           "type": "quantitative",
-          "scale": {"type": "sqrt", "range": [80, 3000]},
+          "scale": {"type": "sqrt", "range": [60, 2800]},
           "legend": null
         },
         "color": {
           "field": "Condition2024",
           "type": "nominal",
           "scale": {
-            "domain": ["Very Good", "Good", "Poor", "Unknown"],
-            "range": ["#2ec71a", "#bbc71a", "#ed4634", "#94a3b8"]
+            "domain": ["Very Good", "Good", "Poor"],
+            "range":  ["#2ec71a", "#bbc71a", "#ed4634"]
           },
           "legend": {
             "title": "2024 Condition",
@@ -982,49 +1085,25 @@ const vis_species_richness = {
           }
         },
         "opacity": {
-          "condition": [
-            {"param": "grp_hover", "value": 1},
-          ],
-          "value": 0.45
+          "condition": {"param": "grp_hover", "value": 1},
+          "value": 0.5
         },
         "tooltip": [
           {"field": "Group",         "title": "Species Group"},
           {"field": "Category",      "title": "Category"},
           {"field": "KnownSpecies",  "title": "Known Species", "format": ","},
           {"field": "Condition2024", "title": "Condition (2024)"},
-          {"field": "TrendLabel",    "title": "Population Trend"},
-          {"field": "XPos",          "title": "Overall Condition Score"}
+          {"field": "XPos",          "title": "Condition Score", "format": ".2f"},
+          {"field": "AdaptScore",    "title": "Adaptability Score", "format": ".1f"},
+          {"field": "TrendLabel",    "title": "Population Trend"}
         ]
       }
     },
     {
-      "mark": {
-        "type": "text",
-        "fontSize": 9.5,
-        "fontWeight": "500",
-        "dy": -14,
-        "color": "#374151"
-      },
+      "mark": {"type": "text", "fontSize": 9, "dy": -14, "fontStyle": "italic"},
       "encoding": {
         "x": {"field": "XPos", "type": "quantitative"},
-        "y": {"field": "LogSpecies", "type": "quantitative"},
-        "text": {"field": "Group"},
-        "opacity": {
-          "condition": {"param": "grp_hover", "value": 1},
-          "value": 0
-        }
-      }
-    },
-    {
-      "mark": {
-        "type": "text",
-        "fontSize": 9,
-        "dy": -14,
-        "fontStyle": "italic"
-      },
-      "encoding": {
-        "x": {"field": "XPos", "type": "quantitative"},
-        "y": {"field": "LogSpecies", "type": "quantitative"},
+        "y": {"field": "AdaptScore", "type": "quantitative"},
         "text": {
           "condition": {
             "test": "datum.KnownSpecies > 500 || datum.CulturalImportance === 5",
@@ -1033,16 +1112,27 @@ const vis_species_richness = {
           "value": ""
         },
         "color": {
-          "field": "Condition2024",
-          "type": "nominal",
+          "field": "Condition2024", "type": "nominal",
           "scale": {
-            "domain": ["Very Good", "Good", "Poor", "Unknown"],
-            "range": ["#2ec71a", "#bbc71a", "#c0392b", "#94a3b8"]
+            "domain": ["Very Good", "Good", "Poor"],
+            "range":  ["#166534", "#7a840a", "#c0392b"]
           }
         },
         "opacity": {
           "condition": {"param": "grp_hover", "value": 0},
           "value": 0.9
+        }
+      }
+    },
+    {
+      "mark": {"type": "text", "fontSize": 9.5, "fontWeight": "500", "dy": -14, "color": "#374151"},
+      "encoding": {
+        "x": {"field": "XPos", "type": "quantitative"},
+        "y": {"field": "AdaptScore", "type": "quantitative"},
+        "text": {"field": "Group"},
+        "opacity": {
+          "condition": {"param": "grp_hover", "value": 1},
+          "value": 0
         }
       }
     }
@@ -1445,7 +1535,7 @@ const vis_sst_chla = {
   "hconcat": [
     {
       "title": {"text": "Sea Surface Temperature (°C)", "fontSize": 13, "fontWeight": 600, "color": "#c0392b"},
-      "width": 340, "height": 580,
+      "width": 340, "height": 460,
       "projection": {"type": "mercator"},
       "layer": [
         {
@@ -1461,8 +1551,7 @@ const vis_sst_chla = {
             "color": {
               "field": "sst", "type": "quantitative",
               "scale": {"scheme": "inferno", "domain": [22, 32]},
-              "title": "Temp (°C)",
-              "legend": {"orient": "bottom", "direction": "horizontal", "gradientLength": 140}
+              "legend": null
             },
             "tooltip": [
               {"field": "latitude", "title": "Lat", "format": ".2f"},
@@ -1481,7 +1570,7 @@ const vis_sst_chla = {
     },
     {
       "title": {"text": "Chlorophyll-a Concentration (mg m⁻³)", "fontSize": 13, "fontWeight": 600, "color": "#166534"},
-      "width": 340, "height": 580,
+      "width": 340, "height": 460,
       "projection": {"type": "mercator"},
       "layer": [
         {
@@ -1497,8 +1586,7 @@ const vis_sst_chla = {
             "color": {
               "field": "chlor_a", "type": "quantitative",
               "scale": {"scheme": "greens", "type": "log", "domain": [0.05, 2]},
-              "title": "Chla (log)",
-              "legend": {"orient": "bottom", "direction": "horizontal", "gradientLength": 140}
+              "legend": null
             },
             "tooltip": [
               {"field": "latitude", "title": "Lat", "format": ".2f"},
@@ -2017,55 +2105,142 @@ const vis_economic_area = {
 };
 vegaEmbed('#vis-economic-area', vis_economic_area, EMB_OPTS).catch(console.error);
 
-const vis_employment = {
+// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+// SECTION 5 — TWO INDEPENDENT PANELS: CORAL COVER + VISITORS
+// Minimal layering: annotation rects + one line mark with point:true.
+// y-axis defined once, no axis:null conflicts.
+// ═══════════════════════════════════════════════════════
+
+const coralVisitorData = [
+  {year:2014, coral:16.6, visitors:2.17},
+  {year:2015, coral:18.4, visitors:2.34},
+  {year:2016, coral:17.8, visitors:2.48},
+  {year:2017, coral:17.0, visitors:2.62},
+  {year:2018, coral:18.1, visitors:2.55},
+  {year:2019, coral:19.6, visitors:2.51},
+  {year:2020, coral:20.8, visitors:1.12},
+  {year:2021, coral:26.9, visitors:1.38},
+  {year:2022, coral:33.0, visitors:2.03},
+  {year:2023, coral:32.2, visitors:2.13},
+];
+
+// ── Panel 1: coral cover ──
+const vis_coral_panel1 = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
-  "height": 130,
-  "data": {"url": "gbr_employment.csv"},
-  "params": [
+  "width": "container", "height": 130,
+  "data": {"values": coralVisitorData},
+  "layer": [
     {
-      "name": "eco_emp_year",
-      "value": 2019,
-      "bind": {
-        "input": "range", "min": 2014, "max": 2023, "step": 1,
-        "name": "Select year: "
+      "data": {"values": [{"x1": 2015.5, "x2": 2017.5}]},
+      "mark": {"type": "rect", "opacity": 0.07, "color": "#c0392b"},
+      "encoding": {
+        "x": {"field": "x1", "type": "quantitative"},
+        "x2": {"field": "x2", "type": "quantitative"},
+        "y": {"value": 0}, "y2": {"value": 130}
+      }
+    },
+    {
+      "data": {"values": [{"x1": 2019.5, "x2": 2021.5}]},
+      "mark": {"type": "rect", "opacity": 0.05, "color": "#1d4ed8"},
+      "encoding": {
+        "x": {"field": "x1", "type": "quantitative"},
+        "x2": {"field": "x2", "type": "quantitative"},
+        "y": {"value": 0}, "y2": {"value": 130}
+      }
+    },
+    {
+      "data": {"values": [{"yr": 2016.5, "lbl": "Mass bleaching 2016–17"}]},
+      "mark": {"type": "text", "align": "center", "dy": 12, "fontSize": 8, "fontStyle": "italic", "color": "#c0392b"},
+      "encoding": {"x": {"field": "yr", "type": "quantitative"}, "y": {"value": 0}, "text": {"field": "lbl"}}
+    },
+    {
+      "data": {"values": [{"yr": 2020.5, "lbl": "COVID-19"}]},
+      "mark": {"type": "text", "align": "center", "dy": 12, "fontSize": 8, "fontStyle": "italic", "color": "#1d4ed8"},
+      "encoding": {"x": {"field": "yr", "type": "quantitative"}, "y": {"value": 0}, "text": {"field": "lbl"}}
+    },
+    {
+      "params": [{"name": "h1", "select": {"type": "point", "on": "mouseover", "nearest": true, "clear": "mouseout"}}],
+      "mark": {
+        "type": "line", "interpolate": "monotone",
+        "color": "#0e7490", "strokeWidth": 2.5,
+        "point": {"color": "#0e7490", "size": 40, "filled": true, "strokeWidth": 0}
+      },
+      "encoding": {
+        "x": {
+          "field": "year", "type": "quantitative",
+          "scale": {"zero": false},
+          "axis": {"labels": false, "grid": false, "domain": true, "domainColor": "#d1d5db", "domainWidth": 1, "ticks": false, "title": null}
+        },
+        "y": {
+          "field": "coral", "type": "quantitative",
+          "scale": {"zero": false, "domain": [14, 36]},
+          "axis": {"title": "Coral cover (%)", "titleFontSize": 11, "grid": true, "gridColor": "#f1f5f9", "domain": true, "domainColor": "#d1d5db", "tickCount": 4, "labelFontSize": 11}
+        },
+        "tooltip": [
+          {"field": "year",  "title": "Year",            "format": "d"},
+          {"field": "coral", "title": "Coral cover (%)", "format": ".1f"}
+        ]
       }
     }
   ],
-  "transform": [
-    {"filter": "datum.Year == eco_emp_year"}
-  ],
-  "mark": {"type": "bar", "cornerRadiusEnd": 5},
-  "encoding": {
-    "y": {
-      "field": "Sector", "type": "nominal",
-      "sort": "-x",
-      "axis": {"title": null, "labelFontSize": 11, "ticks": false, "domain": false}
-    },
-    "x": {
-      "field": "FTE", "type": "quantitative",
-      "axis": {"title": "Full-time equivalent jobs", "titleFontSize": 11,
-               "grid": true, "gridColor": "#f1f5f9", "domain": false,
-               "tickCount": 5, "format": ",.0f"},
-      "scale": {"domain": [0, 45000]}
-    },
-    "color": {
-      "field": "Sector", "type": "nominal",
-      "scale": {
-        "domain": ["Marine tourism (reef-dependent)","Commercial fisheries","Charter fishing"],
-        "range":  ["#0e7490","#e67e22","#f59e0b"]
-      },
-      "legend": null
-    },
-    "tooltip": [
-      {"field": "Year",   "title": "Year",     "format": "d"},
-      {"field": "Sector", "title": "Sector"},
-      {"field": "FTE",    "title": "FTE Jobs", "format": ",.0f"}
-    ]
-  },
   "config": {"view": {"stroke": "transparent"}}
 };
-vegaEmbed('#vis-employment', vis_employment, EMB_OPTS).catch(console.error);
+
+// ── Panel 2: visitors ──
+const vis_coral_panel2 = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container", "height": 130,
+  "data": {"values": coralVisitorData},
+  "layer": [
+    {
+      "data": {"values": [{"x1": 2015.5, "x2": 2017.5}]},
+      "mark": {"type": "rect", "opacity": 0.07, "color": "#c0392b"},
+      "encoding": {
+        "x": {"field": "x1", "type": "quantitative"},
+        "x2": {"field": "x2", "type": "quantitative"},
+        "y": {"value": 0}, "y2": {"value": 130}
+      }
+    },
+    {
+      "data": {"values": [{"x1": 2019.5, "x2": 2021.5}]},
+      "mark": {"type": "rect", "opacity": 0.05, "color": "#1d4ed8"},
+      "encoding": {
+        "x": {"field": "x1", "type": "quantitative"},
+        "x2": {"field": "x2", "type": "quantitative"},
+        "y": {"value": 0}, "y2": {"value": 130}
+      }
+    },
+    {
+      "params": [{"name": "h2", "select": {"type": "point", "on": "mouseover", "nearest": true, "clear": "mouseout"}}],
+      "mark": {
+        "type": "line", "interpolate": "monotone",
+        "color": "#e67e22", "strokeWidth": 2.5,
+        "point": {"color": "#e67e22", "size": 40, "filled": true, "strokeWidth": 0}
+      },
+      "encoding": {
+        "x": {
+          "field": "year", "type": "quantitative",
+          "scale": {"zero": false},
+          "axis": {"format": "d", "tickCount": 10, "title": "Year", "titleFontSize": 11, "labelFontSize": 11, "grid": false, "domain": true, "domainColor": "#d1d5db", "ticks": false}
+        },
+        "y": {
+          "field": "visitors", "type": "quantitative",
+          "scale": {"zero": false, "domain": [0.8, 3.0]},
+          "axis": {"title": "Visitors (millions)", "titleFontSize": 11, "grid": true, "gridColor": "#f1f5f9", "domain": true, "domainColor": "#d1d5db", "tickCount": 4, "labelFontSize": 11, "format": ".1f"}
+        },
+        "tooltip": [
+          {"field": "year",     "title": "Year",                "format": "d"},
+          {"field": "visitors", "title": "Visitors (millions)", "format": ".2f"}
+        ]
+      }
+    }
+  ],
+  "config": {"view": {"stroke": "transparent"}}
+};
+
+vegaEmbed('#vis-coral-panel1', vis_coral_panel1, EMB_OPTS).catch(console.error);
+vegaEmbed('#vis-coral-panel2', vis_coral_panel2, EMB_OPTS).catch(console.error);
 
 </script>
 </body>
