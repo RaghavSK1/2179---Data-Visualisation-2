@@ -5,7 +5,7 @@ Hard Corals,Coral,411,Poor,2,1,3,2.15
 Macroalgae,Plants/Algae,600,Good,3,0,1,2.75
 Soft Corals & Gorgonians,Coral,289,Unknown,0,0,2,0.1
 Seagrasses,Plants/Algae,15,Good,3,1,4,3.55
-Mangroves,Plants/Algae,44,Very Good,4,0,4,3.9
+Mangroves,Plants/Algae,44,Very Good,4,0,4,4.0
 Sharks & Rays,Fish,125,Poor,2,-1,3,1.65
 Marine Turtles,Reptiles,6,Poor,2,0,5,2.35
 Seabirds,Birds,21,Poor,2,-1,3,1.45
@@ -16,4 +16,4 @@ Shorebirds,Birds,40,Poor,2,-1,2,1.25
 Plankton & Microbes,Plankton,5000,Good,3,0,1,2.9
 Black Corals,Coral,24,Unknown,0,0,1,0.35
 Sea Anemones,Invertebrates,40,Unknown,0,0,2,-0.1
-Estuarine Crocodiles,Reptiles,1,Good,3,0,4,4.05
+Estuarine Crocodiles,Reptiles,1,Very Good,3,0,4,4.05

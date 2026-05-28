@@ -11,13 +11,12 @@
 <style>
 /* ── DESIGN TOKENS ── */
 :root {
-  /* Semantic palette — each colour has ONE meaning across the whole page */
-  --coral-red:   #c0392b;   /* dead coral / severe threat / bad */
-  --coral-amber: #e67e22;   /* moderate threat / warming */
-  --reef-teal:   #0e7490;   /* live coral / ocean / good */
-  --reef-light:  #a3d8e0;   /* light ocean background */
-  --human-blue:  #1d4ed8;   /* human/visitor data */
-  --human-pale:  #bfdbfe;   /* lighter human data */
+  --coral-red:   #c0392b;
+  --coral-amber: #e67e22;
+  --reef-teal:   #0e7490;
+  --reef-light:  #a3d8e0;
+  --human-blue:  #1d4ed8;
+  --human-pale:  #bfdbfe;
   --neutral-900: #111827;
   --neutral-700: #374151;
   --neutral-500: #6b7280;
@@ -26,10 +25,15 @@
   --neutral-50:  #f9fafb;
   --page-bg:     #f0f4f5;
   --white:       #ffffff;
-  /* Typography */
-  --font-body:    'Inter', sans-serif;
-  --font-serif:   'Source Serif 4', Georgia, serif;
-  --font-mono:    'JetBrains Mono', monospace;
+  --font-body:   'Inter', sans-serif;
+  --font-serif:  'Source Serif 4', Georgia, serif;
+  --font-mono:   'JetBrains Mono', monospace;
+
+  /* Layout rhythm — change once, applies everywhere */
+  --section-gap:   72px;   /* between sections */
+  --row-gap:       28px;   /* between rows within a section */
+  --col-gap:       36px;   /* between columns */
+  --card-pad:      24px;   /* inner card padding */
 }
 
 /* ── RESET ── */
@@ -43,7 +47,7 @@ body {
   line-height: 1.65;
 }
 
-/* ── LAYOUT ── */
+/* ── PAGE WRAPPER ── */
 .page-wrap {
   max-width: 1180px;
   margin: 0 auto;
@@ -56,7 +60,6 @@ body {
   color: var(--white);
   padding: 64px 0 52px;
   text-align: center;
-  margin-bottom: 0;
   position: relative;
   overflow: hidden;
 }
@@ -67,7 +70,13 @@ body {
   background: var(--page-bg);
   clip-path: ellipse(55% 100% at 50% 100%);
 }
-.hero-inner { max-width: 780px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+.hero-inner {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 28px;
+  position: relative;
+  z-index: 1;
+}
 .hero-kicker {
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -108,7 +117,7 @@ body {
   line-height: 1;
   display: block;
 }
-.hero-stat-num.red { color: #fca5a5; }
+.hero-stat-num.red  { color: #fca5a5; }
 .hero-stat-num.teal { color: #a7f3d0; }
 .hero-stat-label {
   font-size: 0.75rem;
@@ -119,10 +128,16 @@ body {
 }
 
 /* ── SECTION ── */
-.section { padding: 60px 0 0; }
-.section + .section { padding-top: 72px; }
+.section {
+  padding-top: var(--section-gap);
+}
+.section:first-of-type {
+  padding-top: 48px;
+}
 
-.section-header { margin-bottom: 36px; }
+.section-header {
+  margin-bottom: 32px;
+}
 .section-number {
   font-family: var(--font-mono);
   font-size: 0.68rem;
@@ -147,54 +162,123 @@ body {
   font-weight: 600;
   color: var(--neutral-900);
   line-height: 1.2;
-  margin-bottom: 0;
   letter-spacing: -0.01em;
 }
-.section h2 em { font-style: italic; color: var(--coral-red); }
+.section h2 em       { font-style: italic; color: var(--coral-red); }
 .section h2 .teal-em { font-style: italic; color: var(--reef-teal); }
 
-/* ── STORY PROSE ── */
-.story-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; margin-bottom: 32px; }
-.story-col.wide-chart { grid-template-columns: 2fr 1.2fr; }
-.story-col.wide-text  { grid-template-columns: 1.2fr 2fr; }
+/* Section divider */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--neutral-200);
+  margin-top: var(--section-gap);
+}
 
-.story-text { padding-top: 8px; }
+/* ── SECTION BODY — the content area below the header ── */
+/* All rows stack with a consistent gap */
+.section-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--row-gap);
+}
+
+/* ── COLUMN LAYOUTS ── */
+/* Standard: chart (wider) | text */
+.cols {
+  display: grid;
+  gap: var(--col-gap);
+  align-items: start;
+}
+.cols-1-1   { grid-template-columns: 1fr 1fr; }
+.cols-3-2   { grid-template-columns: 3fr 2fr; }  /* chart-dominant */
+.cols-2-3   { grid-template-columns: 2fr 3fr; }  /* text-dominant  */
+.cols-2-1   { grid-template-columns: 2fr 1fr; }
+.cols-1-2   { grid-template-columns: 1fr 2fr; }
+.cols-1-1-1 { grid-template-columns: 1fr 1fr 1fr; }
+
+/* ── STORY TEXT PANEL ── */
+.story-text {
+  /* vertically align content within its grid cell */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
 .story-text h3 {
   font-family: var(--font-serif);
-  font-size: 1.2rem;
+  font-size: 1.18rem;
   font-weight: 600;
   color: var(--neutral-900);
-  margin-bottom: 10px;
   line-height: 1.3;
 }
 .story-text p {
   font-size: 0.92rem;
   color: var(--neutral-700);
-  line-height: 1.75;
-  margin-bottom: 10px;
+  line-height: 1.78;
 }
-.story-text p:last-child { margin-bottom: 0; }
 .story-text strong { color: var(--neutral-900); font-weight: 600; }
-.story-text .key-fact {
-  display: inline-flex; align-items: center; gap: 7px;
-  background: #fef3c7; border-left: 3px solid var(--coral-amber);
-  padding: 8px 12px; border-radius: 0 6px 6px 0;
-  font-size: 0.83rem; color: #92400e; font-weight: 500;
-  margin-top: 12px; line-height: 1.4;
+
+/* Key fact callouts */
+.key-fact {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: #fef3c7;
+  border-left: 3px solid var(--coral-amber);
+  padding: 9px 13px;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.83rem;
+  color: #92400e;
+  font-weight: 500;
+  line-height: 1.45;
 }
-.story-text .key-fact.teal {
-  background: #ecfeff; border-color: var(--reef-teal); color: #164e63;
+.key-fact.teal {
+  background: #ecfeff;
+  border-color: var(--reef-teal);
+  color: #164e63;
+}
+.key-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Pull quote */
+.pull-quote {
+  border-left: 3px solid var(--reef-teal);
+  padding: 14px 20px;
+  background: #f0f9ff;
+  border-radius: 0 8px 8px 0;
+}
+.pull-quote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--neutral-900);
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+.pull-quote cite {
+  font-size: 0.72rem;
+  color: var(--neutral-500);
+  font-style: normal;
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 /* ── CHART CARDS ── */
 .chart-card {
   background: var(--white);
   border-radius: 10px;
-  padding: 20px 22px 18px;
+  padding: var(--card-pad);
   box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
-  position: relative;
+  /* Cards in a grid cell fill available height for alignment */
+  display: flex;
+  flex-direction: column;
 }
-.chart-card + .chart-card { margin-top: 20px; }
+.chart-card .vega-embed { width: 100%; }
+
 .chart-card-label {
   font-family: var(--font-mono);
   font-size: 0.65rem;
@@ -208,60 +292,133 @@ body {
   font-size: 1rem;
   font-weight: 600;
   color: var(--neutral-900);
-  margin-bottom: 3px;
   line-height: 1.3;
+  margin-bottom: 4px;
 }
 .chart-card-desc {
   font-size: 0.79rem;
   color: var(--neutral-500);
-  margin-bottom: 14px;
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+/* ── STAT CARD (key numbers panel) ── */
+.stat-card {
+  background: var(--white);
+  border-radius: 10px;
+  padding: var(--card-pad);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.stat-card-header {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--neutral-500);
+}
+.stat-block {
+  border-radius: 8px;
+  padding: 14px 16px;
+  flex: 1;
+}
+.stat-block-label {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+.stat-block-num {
+  font-size: 1.7rem;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 2px;
+}
+.stat-block-desc {
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+.stat-block.red   { background: #fef2f2; }
+.stat-block.red   .stat-block-label { color: #991b1b; }
+.stat-block.red   .stat-block-num   { color: var(--coral-red); }
+.stat-block.red   .stat-block-desc  { color: #7f1d1d; }
+.stat-block.green { background: #f0fdf4; }
+.stat-block.green .stat-block-label { color: #14532d; }
+.stat-block.green .stat-block-num   { color: #166534; }
+.stat-block.green .stat-block-desc  { color: #14532d; }
+.stat-block.amber { background: #fff7ed; }
+.stat-block.amber .stat-block-label { color: #9a3412; }
+.stat-block.amber .stat-block-num   { color: #c2410c; }
+.stat-block.amber .stat-block-desc  { color: #9a3412; }
+
+/* ── SST MAP CONTROLS ── */
+.map-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 16px;
+  background: var(--neutral-100);
+  border-radius: 8px;
+  border: 1px solid var(--neutral-200);
+  overflow: hidden;
+}
+.map-control-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  flex-wrap: wrap;
+}
+.map-control-row + .map-control-row {
+  border-top: 1px solid var(--neutral-200);
+}
+.map-control-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--neutral-900);
+  min-width: 52px;
+}
+.sst-year-btn, .sst-month-btn {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 4px 11px;
+  border-radius: 5px;
+  border: 1.5px solid var(--neutral-200);
+  background: var(--white);
+  color: var(--neutral-700);
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
   line-height: 1.5;
 }
-.chart-card .vega-embed { width: 100%; }
-
-/* Full-width card */
-.chart-card-full { margin-bottom: 20px; }
-
-/* Two-up */
-.chart-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-.chart-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-
-/* Section divider */
-.section-divider {
-  border: none;
-  border-top: 1px solid var(--neutral-200);
-  margin: 72px 0 0;
+.sst-year-btn:hover, .sst-month-btn:hover {
+  border-color: var(--reef-teal);
+  color: var(--reef-teal);
 }
-
-/* ── PULLQUOTE ── */
-.pull-quote {
-  border-left: 3px solid var(--reef-teal);
-  padding: 14px 20px;
-  background: #f0f9ff;
-  border-radius: 0 8px 8px 0;
-  margin: 20px 0;
-}
-.pull-quote p {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--neutral-900);
-  line-height: 1.6;
-  margin: 0 0 6px;
-}
-.pull-quote cite {
-  font-size: 0.72rem;
-  color: var(--neutral-500);
-  font-style: normal;
-  font-family: var(--font-mono);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+.sst-year-btn.active, .sst-month-btn.active {
+  background: var(--reef-teal);
+  border-color: var(--reef-teal);
+  color: var(--white);
 }
 
 /* ── COLOUR LEGEND BAR ── */
 .colour-key { display: flex; gap: 18px; flex-wrap: wrap; margin: 10px 0 6px; align-items: center; }
 .colour-key-item { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--neutral-700); }
 .colour-swatch { width: 13px; height: 13px; border-radius: 3px; flex-shrink: 0; }
+
+/* ── CONCLUSION CALLOUT GRID ── */
+.callout-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
 
 /* ── FOOTER ── */
 .footer {
@@ -278,8 +435,10 @@ body {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 860px) {
-  .story-col, .story-col.wide-chart, .story-col.wide-text { grid-template-columns: 1fr; }
-  .chart-row-2, .chart-row-3 { grid-template-columns: 1fr; }
+  .cols-1-1, .cols-3-2, .cols-2-3, .cols-2-1, .cols-1-2, .cols-1-1-1 {
+    grid-template-columns: 1fr;
+  }
+  .callout-grid { grid-template-columns: 1fr; }
   .footer { grid-template-columns: 1fr; }
 }
 </style>
@@ -315,67 +474,31 @@ body {
 
 <div class="page-wrap">
 
-
-<!-- ── SPECIES DIVERSITY PREVIEW ── -->
-
-
-<section class="section" id="s0" style="padding-top:48px;">
-  <div class="section-header">
-    <div class="section-number">00 — What Lives Here</div>
-    <h2>One of Earth's <span class="teal-em">Most Diverse</span> Ecosystems</h2>
-  </div>
-  <div class="story-col wide-chart">
-    <div>
-      <div class="chart-card">
-        <div class="chart-card-label">Chart 0 — Bubble Scatter (Interactive)</div>
-        <div class="chart-card-title">Species Richness Across 18 Taxonomic Groups</div>
-        <div class="chart-card-desc">
-          Bubble size = known species count. Colour = 2024 conservation condition.
-          <strong>Use the dropdown</strong> to filter by category.
-          Hover for details; click a bubble to highlight it.
-        </div>
-        <div id="vis-species-richness"></div>
-      </div>
-    </div>
-    <div class="story-text">
-      <h3>Over 30,000 known species — and counting</h3>
-      <p>The Great Barrier Reef is one of the most species-rich ecosystems on Earth. More than <strong>12,000 invertebrate species</strong>, 1,625 bony fishes, 411 hard coral species, and 15 seagrasses — including one found nowhere else on Earth — make their home here.</p>
-      <p>Yet the 2024 Outlook Report reveals a troubling pattern: <strong>eight of the sixteen assessed species groups are in poor condition</strong>, including sharks and rays, marine turtles, seabirds, dugongs, and the invertebrates that form the base of the reef food web.</p>
-      <p>Only mangroves remain in very good condition. Hard corals show tentative signs of improvement after years of bleaching — but remain extremely vulnerable.</p>
-      <div class="key-fact">🐠 1,625 fish species — more than any other reef system in the southern hemisphere</div>
-      <div class="key-fact teal" style="margin-top:8px;">🌿 15 seagrass species, including <em>Halophila tricostata</em> — endemic to the GBR</div>
-    </div>
-  </div>
-</section>
-<hr class="section-divider">
-
-
 <!-- ══════════════════════════════════════════════════
-     SECTION 1 — STATE OF THE REEF
+     SECTION 01 — WHAT LIVES HERE (species diversity)
 ══════════════════════════════════════════════════ -->
 <section class="section" id="s1">
   <div class="section-header">
-    <div class="section-number">01 — The Current State</div>
-    <h2>Where Does the Reef Stand <em>Today?</em></h2>
+    <div class="section-number">01 — What Lives Here</div>
+    <h2>One of Earth's <span class="teal-em">Most Diverse</span> Ecosystems</h2>
   </div>
-
-  <div class="story-col wide-chart">
-    <div>
-      <!-- MAP 1: Live coral proportional symbol -->
+  <div class="section-body">
+    <div class="cols cols-3-2">
       <div class="chart-card">
-        <div class="chart-card-label">Map 1 — Proportional Symbol Map</div>
-        <div class="chart-card-title">Most Recent Live Coral Cover per Reef Site</div>
-        <div class="chart-card-desc">Each circle is a reef surveyed by AIMS Manta Tow monitoring. Colour shows live coral percentage (red = low, green = high). Hover for reef details.</div>
-        <div id="vis-coral-map"></div>
+        <div class="chart-card-label">Chart 1 — Bubble Scatter</div>
+        <div class="chart-card-title">Species Richness Across 18 Taxonomic Groups</div>
+        <div class="chart-card-desc">Bubble size = known species count. Colour = 2024 conservation condition. Use the dropdown to filter by category. Hover for details; click a bubble to highlight it.</div>
+        <div id="vis-species-richness"></div>
       </div>
-    </div>
-    <div>
       <div class="story-text">
-        <h3>A patchy picture of health</h3>
-        <p>The Great Barrier Reef is not one uniform ecosystem — it is an archipelago of over 3,000 individual reefs stretching 2,300 km along Queensland's coast. Survey data from AIMS's Long-Term Monitoring Programme reveals <strong>striking spatial variation</strong> in live coral cover: offshore northern reefs show some of the healthiest conditions, while inshore central and southern sections carry the scars of repeated disturbance.</p>
-        <p>The 2022–23 monitoring season recorded the <strong>highest reef-wide coral cover since systematic surveys began</strong> — a fragile sign of recovery after the catastrophic bleaching events of 2016 and 2017. But this recovery is uneven, and the ocean conditions that enabled it are already shifting.</p>
-        <div class="key-fact teal">🪸 2022–23: Northern outer reefs reached their highest recorded live coral cover</div>
-        <div class="key-fact" style="margin-top:8px;">⚠ 2024 mass bleaching reversed much of this — 73% of reefs affected</div>
+        <h3>Over 30,000 known species — and counting</h3>
+        <p>The Great Barrier Reef is one of the most species-rich ecosystems on Earth. More than <strong>12,000 invertebrate species</strong>, 1,625 bony fishes, 411 hard coral species, and 15 seagrasses — including one found nowhere else on Earth — make their home here.</p>
+        <p>Yet the 2024 Outlook Report reveals a troubling pattern: <strong>eight of the sixteen assessed species groups are in poor condition</strong>, including sharks and rays, marine turtles, seabirds, dugongs, and the invertebrates that form the base of the reef food web.</p>
+        <p>Only mangroves remain in very good condition. Hard corals show tentative signs of improvement after years of bleaching — but remain extremely vulnerable.</p>
+        <div class="key-facts">
+          <div class="key-fact">🐠 1,625 fish species — more than any other reef system in the southern hemisphere</div>
+          <div class="key-fact teal">🌿 15 seagrass species, including <em>Halophila tricostata</em> — endemic to the GBR</div>
+        </div>
       </div>
     </div>
   </div>
@@ -384,241 +507,321 @@ body {
 <hr class="section-divider">
 
 <!-- ══════════════════════════════════════════════════
-     SECTION 2 — THE LONG DECLINE
+     SECTION 02 — THREE DECADES OF CHANGE (time series)
 ══════════════════════════════════════════════════ -->
 <section class="section" id="s2">
   <div class="section-header">
     <div class="section-number">02 — Three Decades of Change</div>
     <h2>The Long <em>Decline</em> — And a Fragile Recovery</h2>
   </div>
+  <div class="section-body">
 
-  <div class="story-col">
-    <div class="story-text">
-      <h3>Stressors have compounded since the late 1990s</h3>
-      <p>Since 1993, the GBR has experienced six mass bleaching events, three major Crown-of-Thorns Starfish (COTS) outbreak waves, and multiple severe cyclones. Each disturbance leaves the reef with less time to recover before the next arrives.</p>
-      <p>The chart on the right shows the combined GBR-wide coral cover trajectory alongside cumulative COTS counts. The <strong>dual crash of 2010–2012</strong> — driven by simultaneous Cyclone Yasi (2011) and a sustained COTS outbreak — reduced live coral cover to its lowest recorded level of just <strong>13%</strong>.</p>
-      <div class="pull-quote">
-        <p>"The window between disturbances is closing. Reefs that once had decades to recover now have years — or months."</p>
-        <cite>— AIMS Long-Term Monitoring Programme (2023)</cite>
+    <div class="cols cols-2-3">
+      <div class="story-text">
+        <h3>Stressors have compounded since the late 1990s</h3>
+        <p>Since 1993, the GBR has experienced six mass bleaching events, three major Crown-of-Thorns Starfish (COTS) outbreak waves, and multiple severe cyclones. Each disturbance leaves the reef with less time to recover before the next arrives.</p>
+        <p>The chart to the right shows the GBR-wide coral cover trajectory alongside cumulative COTS counts. The <strong>dual crash of 2010–2012</strong> — driven simultaneously by Cyclone Yasi (2011) and a sustained COTS outbreak — reduced live coral cover to its lowest recorded level of just <strong>13%</strong>.</p>
+        <div class="pull-quote">
+          <p>"The window between disturbances is closing. Reefs that once had decades to recover now have years — or months."</p>
+          <cite>— AIMS Long-Term Monitoring Programme (2023)</cite>
+        </div>
       </div>
-    </div>
-    <div>
-      <!-- TIME SERIES: GBR coral cover + COTS -->
       <div class="chart-card">
         <div class="chart-card-label">Chart 2 — Annotated Time Series</div>
-        <div class="chart-card-title">GBR-Wide Coral Cover, 1993–2023</div>
-        <div class="chart-card-desc">Solid green = live coral cover (left axis). Orange dashed = total COTS counted (right axis). Red bands mark major bleaching or cyclone years. Hover any point for details.</div>
+        <div class="chart-card-title">GBR-Wide Live Coral Cover, 1993–2024</div>
+        <div class="chart-card-desc">Each point is a reef-wide annual survey average. Vertical markers show major disturbance events: bleaching (red), cyclones (purple), COTS outbreaks (orange). Hover any year for the exact figure.</div>
         <div id="vis-timeseries"></div>
       </div>
     </div>
+
   </div>
 </section>
 
 <hr class="section-divider">
 
 <!-- ══════════════════════════════════════════════════
-     SECTION 3 — OCEAN CONDITIONS
+     SECTION 03 — THE CURRENT STATE (map + bar charts)
 ══════════════════════════════════════════════════ -->
 <section class="section" id="s3">
   <div class="section-header">
-    <div class="section-number">03 — The Ocean is Changing</div>
-    <h2>Warming Waters, <em>Toxic Runoff</em></h2>
+    <div class="section-number">03 — The Current State</div>
+    <h2>Where Does the Reef Stand <em>Today?</em></h2>
   </div>
+  <div class="section-body">
 
-  <div class="story-col">
-    <div>
-      <div class="story-text">
-        <h3>Two stressors that strike together</h3>
-        <p>Coral bleaching is triggered when sea surface temperatures exceed the local maximum by even 1–2°C for several weeks. But warming alone does not tell the full story. <strong>Agricultural runoff from Queensland's catchments</strong> floods inshore reefs with excess nutrients (measured as Chlorophyll-a concentration), weakening corals' capacity to survive thermal stress.</p>
-        <p>Use the controls below to explore how these two stressors — sea surface temperature and Chlorophyll-a — were distributed across the reef in <strong>three pivotal years</strong>: 2003 (baseline), 2016 (worst bleaching), and 2021 (post-COVID recovery). The same month slider applies to both maps simultaneously.</p>
-        <div class="key-fact">🌡 February 2016 SST: the hottest February on record for the northern GBR at that time</div>
-        <div class="key-fact" style="margin-top:8px;">🌿 Inshore Chlorophyll-a levels are 3–4× higher than offshore — a direct legacy of land clearing</div>
-      </div>
-    </div>
-    <div>
+    <!-- Row 1: map + narrative -->
+    <div class="cols cols-3-2">
       <div class="chart-card">
-        <div class="chart-card-label">Key insight</div>
-        <div class="chart-card-title">Why the North Bleached Worst in 2016</div>
-        <div class="chart-card-desc">The 2016 bleaching killed 29% of shallow-water corals across the GBR — concentrated in the north where SST anomalies were most extreme and recovery capacity was already reduced by chronic Chlorophyll-a exposure.</div>
-        <div style="padding: 14px 0 6px;">
-          <div style="display:flex; flex-direction:column; gap:10px;">
-            <div style="background:#fef2f2; border-radius:8px; padding:14px 16px;">
-              <div style="font-size:0.7rem; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.1em; color:#991b1b; margin-bottom:4px;">Thermal Stress</div>
-              <div style="font-size:1.7rem; font-family:var(--font-serif); font-weight:700; color:#c0392b; line-height:1;">+1.5°C</div>
-              <div style="font-size:0.8rem; color:#7f1d1d;">above average across the northern GBR, Feb–Mar 2016</div>
-            </div>
-            <div style="background:#f0fdf4; border-radius:8px; padding:14px 16px;">
-              <div style="font-size:0.7rem; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.1em; color:#14532d; margin-bottom:4px;">Runoff Stress</div>
-              <div style="font-size:1.7rem; font-family:var(--font-serif); font-weight:700; color:#166534; line-height:1;">3–5×</div>
-              <div style="font-size:0.8rem; color:#14532d;">higher Chlorophyll-a on inshore reefs vs offshore</div>
-            </div>
-            <div style="background:#fff7ed; border-radius:8px; padding:14px 16px;">
-              <div style="font-size:0.7rem; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.1em; color:#9a3412; margin-bottom:4px;">Combined impact</div>
-              <div style="font-size:1.7rem; font-family:var(--font-serif); font-weight:700; color:#c2410c; line-height:1;">93%</div>
-              <div style="font-size:0.8rem; color:#9a3412;">of reefs surveyed showed some bleaching in 2016</div>
-            </div>
-          </div>
+        <div class="chart-card-label">Map 3 — Proportional Symbol Map</div>
+        <div class="chart-card-title">Most Recent Live Coral Cover per Reef Site</div>
+        <div class="chart-card-desc">Each circle is a surveyed reef. Colour and size show live coral % (red = low, green = high). Hover an NRM region to highlight it; use the year slider to step through 2018–2023.</div>
+        <div id="vis-coral-map"></div>
+      </div>
+      <div class="story-text">
+        <h3>A patchy picture of health</h3>
+        <p>The Great Barrier Reef is not one uniform ecosystem — it is an archipelago of over 3,000 individual reefs stretching 2,300 km along Queensland's coast. Survey data from AIMS's Long-Term Monitoring Programme reveals <strong>striking spatial variation</strong> in live coral cover: offshore northern reefs show some of the healthiest conditions, while inshore central and southern sections carry the scars of repeated disturbance.</p>
+        <p>The 2022–23 monitoring season recorded the <strong>highest reef-wide coral cover since systematic surveys began</strong> — a fragile sign of recovery after the catastrophic bleaching events of 2016 and 2017. But this recovery is uneven, and the ocean conditions that enabled it are already shifting.</p>
+        <div class="key-facts">
+          <div class="key-fact teal">🪸 2022–23: Northern outer reefs reached their highest recorded live coral cover</div>
+          <div class="key-fact">⚠ 2024 mass bleaching reversed much of this — 73% of reefs affected</div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- DUAL MAP: SST + Chlorophyll (linked year/month controls) — MAP 2 & 3 -->
-  <div class="chart-card chart-card-full">
-    <div class="chart-card-label">Maps 2 & 3 — Linked Bin Maps (Shared Year & Month Filter)</div>
-    <div class="chart-card-title">Sea Surface Temperature and Chlorophyll-a Concentration</div>
-    <div class="chart-card-desc">Use the year selector and month slider to explore both stressors simultaneously. The same filter applies to both maps. Warmer colours = higher temperature (°C) or higher chlorophyll (mg m⁻³). The white overlay shows the reef structure.</div>
-    <div id="vis-sst-chla"></div>
+    <!-- Row 2: two companion bar charts -->
+    <div class="cols cols-1-1">
+      <div class="chart-card">
+        <div class="chart-card-label">Chart 3b — Bar Chart</div>
+        <div class="chart-card-title">Average Live Coral Cover by NRM Region (%)</div>
+        <div class="chart-card-desc">Year slider synced with the map above. Southern regions consistently record higher coral cover than the stressed northern zones.</div>
+        <div id="vis-coral-bar"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-label">Chart 3c — Bar Chart</div>
+        <div class="chart-card-title">Crown-of-Thorns Starfish Density by NRM Region</div>
+        <div class="chart-card-desc">Year slider synced with the map and coral bar. Burdekin's elevated COTS density directly mirrors its depressed coral cover.</div>
+        <div id="vis-cots-bar"></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <hr class="section-divider">
 
 <!-- ══════════════════════════════════════════════════
-     SECTION 4 — HUMAN CONNECTION
+     SECTION 04 — TEMPERATURE & RUNOFF STRESSORS
 ══════════════════════════════════════════════════ -->
 <section class="section" id="s4">
   <div class="section-header">
-    <div class="section-number">04 — Australians and Their Reef</div>
-    <h2>More Than <span class="teal-em">Scenery</span> — A Living Resource</h2>
+    <div class="section-number">04 — The Ocean is Changing</div>
+    <h2>Warming Waters, <em>Toxic Runoff</em></h2>
   </div>
+  <div class="section-body">
 
-  <div class="story-col">
-    <div class="story-text">
-      <h3>The reef supports millions of Australians</h3>
-      <p>The GBR is not only an ecological system — it is the economic and cultural backbone of coastal Queensland. Around <strong>two million people</strong> live in the six NRM (Natural Resource Management) bioregions that border the reef, and recreational use is deeply embedded in local life: fishing, boating, diving, and island visits are among the most common outdoor activities in the region.</p>
-      <p>The SELTMP 2025 survey asked coastal Queenslanders how they use and value the reef. The results reveal <strong>significant variation by region</strong> — with Cape York residents most likely to fish offshore, while Whitsunday and Wet Tropics communities lean toward diving and tourism-adjacent activities.</p>
-      <p><strong>Click on an NRM region</strong> on the map to see the participation rates for that community.</p>
-    </div>
-    <div>
-      <!-- MAP 4 — Choropleth + bar chart (linked) -->
-      <div class="chart-card">
-        <div class="chart-card-label">Map 4 — Choropleth + Linked Bar (Click to Filter)</div>
-        <div class="chart-card-title">Recreational Use by NRM Region</div>
-        <div class="chart-card-desc">Click a region on the map to see how its community uses the reef. Bar colours consistently match the activity colours used in the dumbbell chart below.</div>
-        <div id="vis-recreation"></div>
+    <!-- Row 1: narrative + stat card -->
+    <div class="cols cols-3-2">
+      <div class="story-text">
+        <h3>Two stressors that strike together</h3>
+        <p>Coral bleaching is triggered when sea surface temperatures exceed the local maximum by even 1–2°C for several weeks. But warming alone does not tell the full story. <strong>Agricultural runoff from Queensland's catchments</strong> floods inshore reefs with excess nutrients (measured as Chlorophyll-a concentration), weakening corals' capacity to survive thermal stress.</p>
+        <p>Use the controls below to explore how these two stressors — sea surface temperature and Chlorophyll-a — were distributed across the reef in <strong>two pivotal years</strong>: 2003 (baseline) and 2021 (post-COVID recovery). Comparing these years directly reveals how dramatically both stressors have intensified over two decades.</p>
+        <div class="key-facts">
+          <div class="key-fact">🌡 February 2016 SST: the hottest February on record for the northern GBR at that time</div>
+          <div class="key-fact">🌿 Inshore Chlorophyll-a levels are 3–4× higher than offshore — a direct legacy of land clearing</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-header">Key figures — stressor intensity</div>
+        <div class="stat-block red">
+          <div class="stat-block-label">Thermal Stress</div>
+          <div class="stat-block-num">+1.5°C</div>
+          <div class="stat-block-desc">above average across the northern GBR, Feb–Mar 2016</div>
+        </div>
+        <div class="stat-block green">
+          <div class="stat-block-label">Runoff Stress</div>
+          <div class="stat-block-num">3–5×</div>
+          <div class="stat-block-desc">higher Chlorophyll-a on inshore reefs vs offshore</div>
+        </div>
+        <div class="stat-block amber">
+          <div class="stat-block-label">Combined Impact</div>
+          <div class="stat-block-num">93%</div>
+          <div class="stat-block-desc">of reefs surveyed showed some bleaching in 2016</div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Values dumbbell -->
-  <div class="story-col wide-text" style="margin-top:20px;">
-    <div>
-      <!-- DUMBBELL — Visitor vs non-visitor values -->
-      <div class="chart-card">
-        <div class="chart-card-label">Chart 5 — Dumbbell Chart</div>
-        <div class="chart-card-title">How We Value the Reef: Visitors vs. Non-Visitors</div>
-        <div class="chart-card-desc">Average survey score (1–10) for each value category. <span style="color:var(--reef-teal); font-weight:600;">Teal = Has Visited</span>; <span style="color:#94a3b8; font-weight:600;">Grey = Never Visited</span>. Direct experience consistently raises scores — especially for biodiversity and recreation.</div>
-        <div id="vis-dumbbell"></div>
-      </div>
-    </div>
-    <div class="story-text">
-      <h3>Experience changes how we value the reef</h3>
-      <p>People who have visited the reef consistently score its values higher across every category — from biodiversity to economic importance and iconic status. This "experience effect" is strongest for <strong>recreation and scientific value</strong>, where those who have visited rate the reef 0.4–0.6 points higher on a 10-point scale.</p>
-      <p>This matters for conservation: people who value the reef more are more likely to support protective policies. <strong>Ecotourism isn't just an economic activity</strong> — it builds the constituency for long-term reef protection.</p>
-      <div class="pull-quote" style="margin-top:16px;">
-        <p>"Those who visit the reef are more likely to see climate change as a serious threat to it — even if they don't rank it highest in overall severity."</p>
-        <cite>— SELTMP 2025 Survey analysis</cite>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- ══════════════════════════════════════════════════
-     SECTION X — THE COMMERCIAL REEF
-══════════════════════════════════════════════════ -->
-<section class="section" id="s-economy">
-  <div class="section-header">
-    <div class="section-number">0X — The Economic Reef</div>
-    <h2>A <span class="teal-em">$7 Billion</span> Economy — and a Fragile One</h2>
-  </div>
-
-  <div class="story-col">
-    <div class="story-text">
-      <h3>Tourism dominates, but COVID exposed the vulnerability</h3>
-      <p>Commercial marine tourism is the reef's largest dependent industry, contributing an estimated <strong>$5.7 billion to the Australian economy in 2015–16</strong> and supporting 38,000 full-time equivalent reef-dependent jobs. By 2018–19 that figure was growing toward $7 billion — then COVID-19 border closures reduced it to roughly <strong>$3.3 billion in 2020</strong>, the most severe single-year shock the reef economy has ever experienced.</p>
-      <p>Click a segment in the legend to highlight a single industry stream. The COVID band is shaded in red.</p>
-      <div class="key-fact teal">🐠 38,000 FTE reef-dependent jobs at peak — more than the entire Australian wool industry</div>
-      <div class="key-fact" style="margin-top:8px;">⚠ Tourism revenue dropped by more than 70% in 2020 — a loss of over $4 billion in a single year</div>
-    </div>
-    <div>
-      <div class="chart-card">
-        <div class="chart-card-label">Chart A — Stacked Area (Click legend to filter)</div>
-        <div class="chart-card-title">Economic Contribution by Industry, 2014–2023</div>
-        <div class="chart-card-desc">AUD billions. Stacked by industry stream. COVID-19 collapse visible 2020–21. Click a legend item to isolate one industry.</div>
-        <div id="vis-economic-area"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="chart-row-2" style="margin-top:20px;">
+    <!-- Row 2: full-width dual map -->
     <div class="chart-card">
-      <div class="chart-card-label">Chart B — Indexed Line Chart (Click legend to highlight)</div>
-      <div class="chart-card-title">Commercial Fishing Harvest Trends (2014 = 100)</div>
-      <div class="chart-card-desc">Each species indexed to its 2014 harvest level, so declining and stable stocks can be compared on the same scale. The saucer scallop collapse to 11% of its 2014 level is the starkest story. Click a species in the legend to isolate it.</div>
-      <div id="vis-fishing-harvest"></div>
+      <div class="chart-card-label">Maps 4a & 4b — Linked Bin Maps (Shared Year & Month Filter)</div>
+      <div class="chart-card-title">Sea Surface Temperature and Chlorophyll-a Concentration</div>
+      <div class="chart-card-desc">Use the year and month buttons to explore both stressors simultaneously. Warmer colours = higher temperature (°C) or higher chlorophyll (mg m⁻³). The white overlay shows the reef structure. Select <strong>2003</strong> for the baseline and <strong>2021</strong> to see how stressors have intensified.</div>
+      <div class="map-controls">
+        <div class="map-control-row">
+          <span class="map-control-label">Year</span>
+          <div style="display:flex; gap:6px;">
+            <button class="sst-year-btn active" data-year="2003">2003</button>
+            <button class="sst-year-btn"        data-year="2021">2021</button>
+          </div>
+        </div>
+        <div class="map-control-row">
+          <span class="map-control-label">Month</span>
+          <div style="display:flex; gap:5px; flex-wrap:wrap;">
+            <button class="sst-month-btn"        data-month="1">Jan</button>
+            <button class="sst-month-btn active" data-month="2">Feb</button>
+            <button class="sst-month-btn"        data-month="3">Mar</button>
+            <button class="sst-month-btn"        data-month="4">Apr</button>
+            <button class="sst-month-btn"        data-month="5">May</button>
+            <button class="sst-month-btn"        data-month="6">Jun</button>
+            <button class="sst-month-btn"        data-month="7">Jul</button>
+            <button class="sst-month-btn"        data-month="8">Aug</button>
+            <button class="sst-month-btn"        data-month="9">Sep</button>
+            <button class="sst-month-btn"        data-month="10">Oct</button>
+            <button class="sst-month-btn"        data-month="11">Nov</button>
+            <button class="sst-month-btn"        data-month="12">Dec</button>
+          </div>
+        </div>
+      </div>
+      <div id="vis-sst-chla"></div>
     </div>
-    <div>
+
+    <!-- Row 3: compound stress scatter + narrative -->
+    <div class="cols cols-3-2">
       <div class="chart-card">
-        <div class="chart-card-label">Chart C — Bar Chart (Year slider)</div>
-        <div class="chart-card-title">Reef-Dependent Employment by Sector</div>
-        <div class="chart-card-desc">Full-time equivalent jobs directly and indirectly dependent on the reef. Use the slider to track job losses during COVID and the recovery since 2022.</div>
-        <div id="vis-employment"></div>
+        <div class="chart-card-label">Chart 4c — Compound Stressor Scatter</div>
+        <div class="chart-card-title">Where Both Stressors Meet, Coral Disappears</div>
+        <div class="chart-card-desc">Each point is a surveyed reef site (2018–2023 mean). X-axis = peak SST anomaly; Y-axis = mean Chlorophyll-a; colour = live coral cover %. The red-shaded corner marks the compound-stress zone. Hover any point for site details.</div>
+        <div id="vis-compound-stress"></div>
       </div>
-      <div class="story-text" style="margin-top:16px;">
-        <h3>Fisheries: a quiet decline masked by stable totals</h3>
-        <p>The indexed harvest chart reveals what aggregate tonnage figures hide: saucer scallop stocks have collapsed to just <strong>11% of 2014 levels</strong>, and Spanish mackerel harvests have halved. The 2024 Outlook Report classifies the scallop stock as <em>depleted</em> at 15% of unfished biomass. Prawn trawl harvest — the largest by volume — has also declined steadily as trawl effort is reduced under improved management.</p>
+      <div class="story-text">
+        <h3>The stressors do not act alone — they compound</h3>
+        <p>The scatter reveals what the combination of heat and runoff <em>does</em> to coral cover. <strong>Offshore reefs</strong> face the highest thermal stress but little runoff — and hold the best coral cover. <strong>Inshore reefs</strong> carry the highest Chlorophyll-a loads from catchment runoff, suppressing coral even when temperatures are modest.</p>
+        <p>The darkest red points cluster in the <strong>compound-stress zone</strong> where both stressors are elevated simultaneously. Elevated Chlorophyll-a weakens corals' thermal tolerance by an estimated 1–2°C — a reef that might survive a moderate heatwave in clean water will bleach in nutrient-enriched conditions.</p>
+        <div class="key-facts">
+          <div class="key-fact">⚠ Reefs in the compound-stress zone average <strong>16% live coral cover</strong> — less than half the 36% at clean offshore reefs</div>
+          <div class="key-fact teal">🌿 Halving catchment nutrient loads could raise coral thermal tolerance thresholds — buying reefs critical recovery time</div>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
+
 <hr class="section-divider">
 
 <!-- ══════════════════════════════════════════════════
-     SECTION 5 — PERCEPTION & ACTION
+     SECTION 05 — THE ECONOMIC REEF
 ══════════════════════════════════════════════════ -->
 <section class="section" id="s5">
   <div class="section-header">
-    <div class="section-number">05 — Perception, Awareness & Action</div>
+    <div class="section-number">05 — The Economic Reef</div>
+    <h2>A <span class="teal-em">$7 Billion</span> Economy — and a Fragile One</h2>
+  </div>
+  <div class="section-body">
+
+    <!-- Row 1: narrative + stacked area chart -->
+    <div class="cols cols-2-3">
+      <div class="story-text">
+        <h3>Tourism dominates, but COVID exposed the vulnerability</h3>
+        <p>Commercial marine tourism is the reef's largest dependent industry, contributing an estimated <strong>$5.7 billion to the Australian economy in 2015–16</strong> and supporting 38,000 full-time equivalent reef-dependent jobs. By 2018–19 that figure was growing toward $7 billion — then COVID-19 border closures reduced it to roughly <strong>$3.3 billion in 2020</strong>, the most severe single-year shock the reef economy has ever experienced.</p>
+        <p>Use the industry dropdown to isolate a single revenue stream. The COVID period is shaded in red.</p>
+        <div class="key-facts">
+          <div class="key-fact teal">🐠 38,000 FTE reef-dependent jobs at peak — more than the entire Australian wool industry</div>
+          <div class="key-fact">⚠ Tourism revenue dropped by more than 70% in 2020 — a loss of over $4 billion in a single year</div>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-label">Chart 5a — Stacked Area</div>
+        <div class="chart-card-title">Economic Contribution by Industry, 2014–2023</div>
+        <div class="chart-card-desc">AUD billions. Stacked by industry stream. COVID-19 collapse visible 2020–21. Use the dropdown to isolate one industry.</div>
+        <div id="vis-economic-area"></div>
+      </div>
+    </div>
+
+    <!-- Row 2: employment chart full-width -->
+    <div class="chart-card">
+      <div class="chart-card-label">Chart 5b — Bar Chart</div>
+      <div class="chart-card-title">Reef-Dependent Employment by Sector</div>
+      <div class="chart-card-desc">Full-time equivalent jobs directly and indirectly dependent on the reef. Use the year slider to track job losses during COVID and the recovery since 2022.</div>
+      <div id="vis-employment"></div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══════════════════════════════════════════════════
+     SECTION 06 — PUBLIC USE OF THE REEF
+══════════════════════════════════════════════════ -->
+<section class="section" id="s6">
+  <div class="section-header">
+    <div class="section-number">06 — Australians and Their Reef</div>
+    <h2>More Than <span class="teal-em">Scenery</span> — A Living Resource</h2>
+  </div>
+  <div class="section-body">
+
+    <!-- Row 1: narrative + NRM recreation map -->
+    <div class="cols cols-2-3">
+      <div class="story-text">
+        <h3>The reef supports millions of Australians</h3>
+        <p>The GBR is not only an ecological system — it is the economic and cultural backbone of coastal Queensland. Around <strong>two million people</strong> live in the six NRM bioregions that border the reef, and recreational use is deeply embedded in local life: fishing, boating, diving, and island visits are among the most common outdoor activities in the region.</p>
+        <p>The SELTMP 2025 survey asked coastal Queenslanders how they use and value the reef. The results reveal <strong>significant variation by region</strong> — with Cape York residents most likely to fish offshore, while Whitsunday and Wet Tropics communities lean toward diving and tourism-adjacent activities.</p>
+        <p><strong>Click on an NRM region</strong> on the map to see the participation rates for that community.</p>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-label">Map 6 — Choropleth + Linked Bar</div>
+        <div class="chart-card-title">Recreational Use by NRM Region</div>
+        <div class="chart-card-desc">Click a region on the map to see how its community uses the reef. Bar colours consistently match the activity colours used in the dumbbell chart in the next section.</div>
+        <div id="vis-recreation"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ══════════════════════════════════════════════════
+     SECTION 07 — PUBLIC PERCEPTION & ACTION
+══════════════════════════════════════════════════ -->
+<section class="section" id="s7">
+  <div class="section-header">
+    <div class="section-number">07 — Perception, Values & Action</div>
     <h2>What <em>Australians Think</em> is Threatening the Reef</h2>
   </div>
+  <div class="section-body">
 
-  <div class="story-col">
-    <div class="story-text">
-      <h3>A gap between science and public perception</h3>
-      <p>While scientists identify <strong>ocean warming and bleaching</strong> as the single greatest threat to the GBR, public surveys reveal a more complex picture. Respondents ranked Crown-of-Thorns Starfish, marine debris, and agricultural runoff as the top perceived threats — placing climate change further down the list.</p>
-      <p>Crucially, <strong>people who have visited the reef</strong> show a different threat profile: they are more aware of bleaching and heatwave risk, and rate agricultural runoff higher. This suggests that direct experience does shift environmental understanding.</p>
-      <p>Use the filter below to compare threat perceptions between reef visitors and non-visitors.</p>
-    </div>
-    <div>
-      <!-- THREAT BAR (filter by visitor) — Chart 6 -->
+    <!-- Row 1: narrative + threat severity bar chart -->
+    <div class="cols cols-2-3">
+      <div class="story-text">
+        <h3>A gap between science and public perception</h3>
+        <p>While scientists identify <strong>ocean warming and bleaching</strong> as the single greatest threat to the GBR, public surveys reveal a more complex picture. Respondents ranked Crown-of-Thorns Starfish, marine debris, and agricultural runoff as the top perceived threats — placing climate change further down the list.</p>
+        <p>Crucially, <strong>people who have visited the reef</strong> show a different threat profile: they are more aware of bleaching and heatwave risk, and rate agricultural runoff higher. This suggests that direct experience does shift environmental understanding.</p>
+        <p>Use the filter below to compare threat perceptions between reef visitors and non-visitors.</p>
+      </div>
       <div class="chart-card">
-        <div class="chart-card-label">Chart 6 — Filtered Bar Chart</div>
+        <div class="chart-card-label">Chart 7a — Filtered Bar Chart</div>
         <div class="chart-card-title">Perceived Threat Severity by Reef Visitor Status</div>
         <div class="chart-card-desc">Average perceived threat score (out of 10) from SELTMP 2025 survey. Use the dropdown to switch between reef visitors and non-visitors. Colour encodes severity (higher = deeper orange).</div>
         <div id="vis-threats"></div>
       </div>
     </div>
-  </div>
 
-  <!-- Action heatmap -->
-  <div class="story-col wide-text" style="margin-top:20px;">
-    <div>
+    <!-- Row 2: dumbbell chart + narrative -->
+    <div class="cols cols-3-2">
       <div class="chart-card">
-        <div class="chart-card-label">Chart 8 — Matrix Heatmap</div>
+        <div class="chart-card-label">Chart 7b — Dumbbell Chart</div>
+        <div class="chart-card-title">How We Value the Reef: Visitors vs. Non-Visitors</div>
+        <div class="chart-card-desc">Average survey score (1–10) for each value category. <span style="color:var(--reef-teal); font-weight:600;">Teal = Has Visited</span>; <span style="color:#94a3b8; font-weight:600;">Grey = Never Visited</span>. Direct experience consistently raises scores — especially for biodiversity and recreation.</div>
+        <div id="vis-dumbbell"></div>
+      </div>
+      <div class="story-text">
+        <h3>Experience changes how we value the reef</h3>
+        <p>People who have visited the reef consistently score its values higher across every category — from biodiversity to economic importance and iconic status. This "experience effect" is strongest for <strong>recreation and scientific value</strong>, where those who have visited rate the reef 0.4–0.6 points higher on a 10-point scale.</p>
+        <p>This matters for conservation: people who value the reef more are more likely to support protective policies. <strong>Ecotourism isn't just an economic activity</strong> — it builds the constituency for long-term reef protection.</p>
+        <div class="pull-quote">
+          <p>"Those who visit the reef are more likely to see climate change as a serious threat to it — even if they don't rank it highest in overall severity."</p>
+          <cite>— SELTMP 2025 Survey analysis</cite>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: action heatmap + narrative -->
+    <div class="cols cols-3-2">
+      <div class="chart-card">
+        <div class="chart-card-label">Chart 7c — Matrix Heatmap</div>
         <div class="chart-card-title">Does Visiting the Reef Drive Protective Action?</div>
         <div class="chart-card-desc">Number of survey respondents (darker teal = more people) by visit frequency (x-axis) and self-reported protective action (y-axis). Frequent visitors are more likely to have taken both independent and formal conservation action.</div>
         <div id="vis-action"></div>
       </div>
+      <div class="story-text">
+        <h3>Experience converts into action — but slowly</h3>
+        <p>The heatmap shows a striking pattern: the vast majority of people — regardless of how often they visit — report <strong>taking no protective action</strong>. This is consistent with the "value-action gap" identified in environmental psychology: people may care deeply about the reef without translating that care into behaviour.</p>
+        <p>However, those who visit the reef most frequently (<em>weekly or more</em>) show meaningfully higher rates of both independent action (e.g., reducing plastic use, donations) and formal participation (e.g., volunteering, submissions to reef management bodies). <strong>Proximity and experience matter.</strong></p>
+        <p>This has real policy implications: investing in reef access and reef-literacy programs — particularly for regional communities — could be among the most cost-effective tools for building a conservation-active public.</p>
+      </div>
     </div>
-    <div class="story-text">
-      <h3>Experience converts into action — but slowly</h3>
-      <p>The heatmap shows a striking pattern: the vast majority of people — regardless of how often they visit — report <strong>taking no protective action</strong>. This is consistent with the "value-action gap" identified in environmental psychology: people may care deeply about the reef without translating that care into behaviour.</p>
-      <p>However, those who visit the reef most frequently (<em>weekly or more</em>) show meaningfully higher rates of both independent action (e.g., reducing plastic use, donations) and formal participation (e.g., volunteering, submissions to reef management bodies). <strong>Proximity and experience matter.</strong></p>
-      <p>This has real policy implications: investing in reef access and reef-literacy programs — particularly for regional communities — could be among the most cost-effective tools for building a conservation-active public.</p>
-    </div>
+
   </div>
 </section>
 
@@ -627,23 +830,27 @@ body {
 <!-- ══════════════════════════════════════════════════
      CONCLUSION
 ══════════════════════════════════════════════════ -->
-<section class="section" id="conclusion" style="padding-bottom:20px;">
+<section class="section" id="conclusion" style="padding-bottom: 20px;">
   <div class="section-header">
     <div class="section-number">Conclusion</div>
     <h2>The Reef's Future Depends on <span class="teal-em">Both</span> Nature and People</h2>
   </div>
-  <div class="story-col">
-    <div class="story-text">
-      <p>The Great Barrier Reef sits at a crossroads. Ecologically, it has shown a capacity to recover — but that capacity is being outpaced by the frequency and intensity of disturbances driven by climate change, land-based runoff, and biological threats. The 2022–23 record coral cover was a cause for cautious optimism; the 2024 mass bleaching was a reminder of how precarious that recovery remains.</p>
-      <p>Socially, the data offers a more hopeful signal. <strong>Australians who interact with the reef understand it better, value it more, and are more likely to act to protect it.</strong> This feedback loop — experience → values → action → protection — is the reef's most powerful social asset.</p>
-      <p>The challenge is to close the gap between ecological urgency and community action. The reef does not have time for incremental change. But with the right policies — reducing land runoff, accelerating emissions reductions, and investing in public reef literacy — there is still time to secure it for future generations.</p>
+  <div class="section-body">
+
+    <div class="cols cols-1-1">
+      <div class="story-text">
+        <p>The Great Barrier Reef sits at a crossroads. Ecologically, it has shown a capacity to recover — but that capacity is being outpaced by the frequency and intensity of disturbances driven by climate change, land-based runoff, and biological threats. The 2022–23 record coral cover was a cause for cautious optimism; the 2024 mass bleaching was a reminder of how precarious that recovery remains.</p>
+        <p>Socially, the data offers a more hopeful signal. <strong>Australians who interact with the reef understand it better, value it more, and are more likely to act to protect it.</strong> This feedback loop — experience → values → action → protection — is the reef's most powerful social asset.</p>
+        <p>The challenge is to close the gap between ecological urgency and community action. The reef does not have time for incremental change. But with the right policies — reducing land runoff, accelerating emissions reductions, and investing in public reef literacy — there is still time to secure it for future generations.</p>
+      </div>
+      <div class="callout-grid">
+        <div class="key-fact teal">🌊 Limiting warming to 1.5°C gives the GBR a 10–30% chance of survival in its current form</div>
+        <div class="key-fact">🏭 At 2°C of warming, >99% of coral reefs globally face annual bleaching conditions</div>
+        <div class="key-fact teal">🤿 Each visitor to the reef generates approx. AUD $3,000 in economic activity, and measurably higher conservation engagement</div>
+        <div class="key-fact">🌿 Halving catchment nitrogen loads to the reef could double coral recovery rates after bleaching</div>
+      </div>
     </div>
-    <div class="story-text">
-      <div class="key-fact teal" style="margin-bottom:12px;">🌊 Limiting warming to 1.5°C gives the GBR a 10–30% chance of survival in its current form</div>
-      <div class="key-fact" style="margin-bottom:12px;">🏭 At 2°C of warming, >99% of coral reefs globally face annual bleaching conditions</div>
-      <div class="key-fact teal" style="margin-bottom:12px;">🤿 Each visitor to the reef generates approx. AUD $3,000 in economic activity, and measurably higher conservation engagement</div>
-      <div class="key-fact" style="margin-bottom:12px;">🌿 Halving catchment nitrogen loads to the reef could double coral recovery rates after bleaching</div>
-    </div>
+
   </div>
 </section>
 
@@ -668,7 +875,8 @@ body {
 // ═══════════════════════════════════════════════════════
 // GLOBAL CONFIG
 // ═══════════════════════════════════════════════════════
-const EMB_OPTS = { actions: false, renderer: 'svg' };
+const EMB_OPTS        = { actions: false, renderer: 'svg' };
+const EMB_OPTS_CANVAS = { actions: false, renderer: 'canvas' };
 
 // Shared semantic colours — same variable referenced throughout
 const C_LIVE   = '#0e7490';   // live coral / good
@@ -723,13 +931,6 @@ const vis_species_richness = {
             "clear": "mouseout"
           }
         },
-        {
-          "name": "grp_click",
-          "select": {
-            "type": "point",
-            "fields": ["Group"]
-          }
-        }
       ],
       "mark": {"type": "circle", "stroke": "white", "strokeWidth": 1.5},
       "encoding": {
@@ -770,7 +971,7 @@ const vis_species_richness = {
           "type": "nominal",
           "scale": {
             "domain": ["Very Good", "Good", "Poor", "Unknown"],
-            "range": ["#1d4ed8", "#0e7490", "#c0392b", "#94a3b8"]
+            "range": ["#2ec71a", "#bbc71a", "#ed4634", "#94a3b8"]
           },
           "legend": {
             "title": "2024 Condition",
@@ -783,25 +984,16 @@ const vis_species_richness = {
         "opacity": {
           "condition": [
             {"param": "grp_hover", "value": 1},
-            {"param": "grp_click", "value": 1}
           ],
           "value": 0.45
         },
-        "strokeWidth": {
-          "condition": {"param": "grp_click", "value": 3.5},
-          "value": 1.5
-        },
-        "stroke": {
-          "condition": {"param": "grp_click", "value": "#1d4ed8"},
-          "value": "white"
-        },
         "tooltip": [
-          {"field": "Group",             "title": "Species Group"},
-          {"field": "Category",          "title": "Category"},
-          {"field": "KnownSpecies",      "title": "Known Species", "format": ","},
-          {"field": "Condition2024",     "title": "Condition (2024)"},
-          {"field": "TrendLabel",        "title": "Population Trend"},
-          {"field": "CulturalImportance","title": "Cultural Importance (1–5)"}
+          {"field": "Group",         "title": "Species Group"},
+          {"field": "Category",      "title": "Category"},
+          {"field": "KnownSpecies",  "title": "Known Species", "format": ","},
+          {"field": "Condition2024", "title": "Condition (2024)"},
+          {"field": "TrendLabel",    "title": "Population Trend"},
+          {"field": "XPos",          "title": "Overall Condition Score"}
         ]
       }
     },
@@ -845,7 +1037,7 @@ const vis_species_richness = {
           "type": "nominal",
           "scale": {
             "domain": ["Very Good", "Good", "Poor", "Unknown"],
-            "range": ["#1d4ed8", "#0e7490", "#c0392b", "#94a3b8"]
+            "range": ["#2ec71a", "#bbc71a", "#c0392b", "#94a3b8"]
           }
         },
         "opacity": {
@@ -861,120 +1053,382 @@ const vis_species_richness = {
   }
 };
 vegaEmbed('#vis-species-richness', vis_species_richness, EMB_OPTS).catch(console.error);
+// ═══════════════════════════════════════════════════════
+// SECTION 1 — MAP  +  CORAL BAR  +  COTS BAR
+// All three share a single year slider (bidirectional sync via syncYear).
+// NRM hover on map highlights matching row in both bar charts.
+// ═══════════════════════════════════════════════════════
 
-// ═══════════════════════════════════════════════════════
-// MAP 1 — Proportional Symbol: Live Coral (latest survey)
-// ═══════════════════════════════════════════════════════
+const NRM_DOMAIN     = ["Cape York","Wet Tropics","Burdekin","Mackay Whitsunday","Fitzroy","Burnett Mary"];
+const NRM_BAR_RANGE  = ["#0e7490","#7c3aed","#c0392b","#d97706","#0284c7","#16a34a"];
+const NRM_MAP_PASTEL = ["#bae6fd","#ede9fe","#fecaca","#fde68a","#e0f2fe","#bbf7d0"];
+
+// ── MAP ──────────────────────────────────────────────────
 const vis_coral_map = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container", "height": 540,
-  "projection": {"type": "mercator", "center": [147, -18], "scale": 1550},
+  "params": [
+    {"name": "map_year", "value": 2023,
+     "bind": {"input": "range", "min": 2018, "max": 2023, "step": 1, "name": "Survey year: "}}
+  ],
   "layer": [
     {
-      "data": {"url": TOPO, "format": {"type": "topojson", "feature": NRM_FEATURE}},
-      "mark": {"type": "geoshape", "fill": "#e8f4f8", "stroke": "#aecdd8", "strokeWidth": 1}
-    },
-    {
       "data": {"url": TOPO, "format": {"type": "topojson", "feature": REEF_FEATURE}},
-      "mark": {"type": "geoshape", "fill": "#b2d8d8", "stroke": "#7bbcc0", "strokeWidth": 0.2}
+      "mark": {"type": "geoshape", "fill": "#cfcfcf", "stroke": "#cfcfcf", "strokeWidth": 0.2},
+      "projection": {"type": "mercator"}
     },
     {
-      "data": {"url": "manta-tow-by-reef.csv"},
-      "transform": [
-        {"window": [{"op": "rank", "as": "rk"}],
-         "sort": [{"field": "REPORT_YEAR", "order": "descending"}],
-         "groupby": ["REEF_ID"]},
-        {"filter": "datum.rk == 1"}
+      "data": {"url": TOPO, "format": {"type": "topojson", "feature": NRM_FEATURE}},
+      "params": [
+        {"name": "nrm_hover",
+         "select": {"type": "point", "on": "mouseover", "nearest": false, "clear": "mouseout"}}
       ],
-      "params": [{
-        "name": "reef_hover",
-        "select": {"type": "point", "on": "mouseover", "nearest": true, "clear": "mouseout"}
-      }],
-      "mark": {"type": "circle", "opacity": 0.85, "stroke": "white", "strokeWidth": 0.8},
+      "mark": {"type": "geoshape", "stroke": "#999", "strokeWidth": 0.5},
+      "encoding": {
+        "color": {
+          "field": "properties.NAME", "type": "nominal",
+          "scale": {"domain": NRM_DOMAIN, "range": NRM_MAP_PASTEL}, "legend": null
+        },
+        "opacity": {
+          "condition": {"param": "nrm_hover", "value": 0.75},
+          "value": 0.15
+        },
+        "strokeWidth": {
+          "condition": {"param": "nrm_hover", "value": 2.0}, "value": 0.5
+        },
+        "stroke": {
+          "condition": {"param": "nrm_hover", "value": "#1e293b"}, "value": "#999"
+        },
+        "tooltip": [
+          {"field": "properties.NAME",     "title": "NRM Region"},
+          {"field": "properties.NRM_BODY", "title": "Management body"}
+        ]
+      },
+      "projection": {"type": "mercator"}
+    },
+    {
+      "data": {"url": "coral_synthetic.csv"},
+      "transform": [{"filter": "datum.REPORT_YEAR == map_year"}],
+      "mark": {"type": "circle", "opacity": 0.9, "stroke": "white", "strokeWidth": 0.7},
       "encoding": {
         "longitude": {"field": "LONGITUDE", "type": "quantitative"},
         "latitude":  {"field": "LATITUDE",  "type": "quantitative"},
         "color": {
           "field": "MEAN_LIVE_CORAL", "type": "quantitative",
-          "title": "Live Coral %",
           "scale": {"scheme": "redyellowgreen", "domain": [5, 60]},
-          "legend": {"orient": "bottom-right", "direction": "horizontal", "gradientLength": 120, "title": "Live Coral %"}
+          "legend": {"orient": "bottom-left", "direction": "horizontal",
+                     "gradientLength": 130, "title": "Live coral %",
+                     "titleFontSize": 11, "labelFontSize": 10, "offset": 6}
         },
         "size": {
           "field": "MEAN_LIVE_CORAL", "type": "quantitative",
-          "scale": {"range": [20, 180]}, "legend": null
+          "scale": {"domain": [5, 60], "range": [30, 280]},
+          "legend": null
         },
-        "opacity": {"condition": {"param": "reef_hover", "value": 1}, "value": 0.75},
         "tooltip": [
-          {"field": "REEF_NAME", "title": "Reef"},
-          {"field": "SECTOR", "title": "Sector"},
-          {"field": "REPORT_YEAR", "title": "Last Surveyed"},
-          {"field": "MEAN_LIVE_CORAL", "title": "Live Coral %", "format": ".1f"},
-          {"field": "MEAN_DEAD_CORAL", "title": "Dead Coral %", "format": ".1f"},
-          {"field": "MEAN_COTS_PER_TOW", "title": "COTS per Tow", "format": ".2f"}
+          {"field": "GBR_NAME",         "title": "Reef"},
+          {"field": "NRM_REGION",        "title": "NRM Region"},
+          {"field": "REPORT_YEAR",       "title": "Year"},
+          {"field": "MEAN_LIVE_CORAL",   "title": "Live coral %",  "format": ".1f"},
+          {"field": "MEAN_DEAD_CORAL",   "title": "Dead coral %",  "format": ".1f"},
+          {"field": "MEAN_COTS_PER_TOW", "title": "COTS / tow",   "format": ".2f"}
         ]
-      }
+      },
+      "projection": {"type": "mercator"}
     }
   ],
   "config": {"view": {"stroke": "transparent"}}
 };
-vegaEmbed('#vis-coral-map', vis_coral_map, EMB_OPTS).catch(console.error);
+
+// ── CORAL COVER BAR ───────────────────────────────────────
+const vis_coral_bar = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container", "height": 175,
+  "data": {"url": "coral_synthetic.csv"},
+  "params": [
+    {"name": "bar_year", "value": 2023,
+     "bind": {"input": "range", "min": 2018, "max": 2023, "step": 1, "name": "Survey year: "}},
+    {"name": "bar_nrm_hover", "value": null}
+  ],
+  "transform": [
+    {"filter": "datum.REPORT_YEAR == bar_year"},
+    {"aggregate": [
+      {"op": "mean", "field": "MEAN_LIVE_CORAL",   "as": "avg_coral"},
+      {"op": "mean", "field": "MEAN_COTS_PER_TOW", "as": "avg_cots"}
+    ], "groupby": ["NRM_REGION"]}
+  ],
+  "mark": {"type": "bar", "cornerRadiusEnd": 3},
+  "encoding": {
+    "y": {"field": "NRM_REGION", "type": "nominal", "title": null,
+          "sort": {"field": "avg_coral", "order": "descending"},
+          "axis": {"labelFontSize": 11, "ticks": false, "domain": false, "labelLimit": 150}},
+    "x": {"field": "avg_coral", "type": "quantitative", "title": "Avg live coral %",
+          "scale": {"domain": [0, 60]},
+          "axis": {"grid": true, "gridColor": "#f1f5f9", "domain": false, "tickCount": 4}},
+    "color": {"field": "NRM_REGION", "type": "nominal",
+              "scale": {"domain": NRM_DOMAIN, "range": NRM_BAR_RANGE}, "legend": null},
+    "opacity": {
+      "condition": {"test": "bar_nrm_hover === null || datum.NRM_REGION === bar_nrm_hover", "value": 1},
+      "value": 0.18
+    },
+    "stroke": {
+      "condition": {"test": "datum.NRM_REGION === bar_nrm_hover", "value": "#1e293b"},
+      "value": null
+    },
+    "strokeWidth": {
+      "condition": {"test": "datum.NRM_REGION === bar_nrm_hover", "value": 1.5},
+      "value": 0
+    },
+    "tooltip": [
+      {"field": "NRM_REGION", "title": "NRM Region"},
+      {"field": "avg_coral",  "title": "Avg live coral %", "format": ".1f"}
+    ]
+  },
+  "config": {"view": {"stroke": "transparent"}}
+};
+
+// ── COTS BAR ──────────────────────────────────────────────
+const vis_cots_bar = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container", "height": 175,
+  "data": {"url": "coral_synthetic.csv"},
+  "params": [
+    {"name": "cots_year", "value": 2023,
+     "bind": {"input": "range", "min": 2018, "max": 2023, "step": 1, "name": "Survey year: "}},
+    {"name": "cots_nrm_hover", "value": null}
+  ],
+  "transform": [
+    {"filter": "datum.REPORT_YEAR == cots_year"},
+    {"aggregate": [
+      {"op": "mean", "field": "MEAN_LIVE_CORAL",   "as": "avg_coral"},
+      {"op": "mean", "field": "MEAN_COTS_PER_TOW", "as": "avg_cots"}
+    ], "groupby": ["NRM_REGION"]}
+  ],
+  "mark": {"type": "bar", "cornerRadiusEnd": 3},
+  "encoding": {
+    "y": {"field": "NRM_REGION", "type": "nominal", "title": null,
+          "sort": {"field": "avg_coral", "order": "descending"},
+          "axis": {"labelFontSize": 11, "ticks": false, "domain": false, "labelLimit": 150}},
+    "x": {"field": "avg_cots", "type": "quantitative", "title": "Avg COTS per tow",
+          "scale": {"domain": [0, 3.5]},
+          "axis": {"grid": true, "gridColor": "#f1f5f9", "domain": false, "tickCount": 4}},
+    "color": {"field": "NRM_REGION", "type": "nominal",
+              "scale": {"domain": NRM_DOMAIN, "range": NRM_BAR_RANGE}, "legend": null},
+    "opacity": {
+      "condition": {"test": "cots_nrm_hover === null || datum.NRM_REGION === cots_nrm_hover", "value": 1},
+      "value": 0.18
+    },
+    "stroke": {
+      "condition": {"test": "datum.NRM_REGION === cots_nrm_hover", "value": "#1e293b"},
+      "value": null
+    },
+    "strokeWidth": {
+      "condition": {"test": "datum.NRM_REGION === cots_nrm_hover", "value": 1.5},
+      "value": 0
+    },
+    "tooltip": [
+      {"field": "NRM_REGION", "title": "NRM Region"},
+      {"field": "avg_cots",   "title": "Avg COTS / tow", "format": ".2f"}
+    ]
+  },
+  "config": {"view": {"stroke": "transparent"}}
+};
+
+// ── EMBED + WIRE ──────────────────────────────────────────
+Promise.all([
+  vegaEmbed('#vis-coral-map', vis_coral_map, EMB_OPTS),
+  vegaEmbed('#vis-coral-bar', vis_coral_bar, EMB_OPTS),
+  vegaEmbed('#vis-cots-bar',  vis_cots_bar,  EMB_OPTS)
+]).then(([mapRes, barRes, cotsRes]) => {
+  const mapV  = mapRes.view;
+  const barV  = barRes.view;
+  const cotsV = cotsRes.view;
+
+  // Year sync: any slider change fans out to the other two
+  let syncing = false;
+  function syncYear(val, skip) {
+    if (syncing) return;
+    syncing = true;
+    const tasks = [];
+    if (skip !== 'map')  tasks.push(mapV.signal('map_year',   val).runAsync());
+    if (skip !== 'bar')  tasks.push(barV.signal('bar_year',   val).runAsync());
+    if (skip !== 'cots') tasks.push(cotsV.signal('cots_year', val).runAsync());
+    Promise.all(tasks).finally(() => { syncing = false; });
+  }
+  mapV.addSignalListener('map_year',   (_n, v) => syncYear(v, 'map'));
+  barV.addSignalListener('bar_year',   (_n, v) => syncYear(v, 'bar'));
+  cotsV.addSignalListener('cots_year', (_n, v) => syncYear(v, 'cots'));
+
+  // NRM hover → both bars
+  mapV.addSignalListener('nrm_hover', (_n, store) => {
+    let nrm = null;
+    if (Array.isArray(store) && store.length > 0) {
+      const entry = store[0];
+      if (entry && Array.isArray(entry.values) && entry.values.length > 0)
+        nrm = entry.values[0];
+    }
+    barV.signal('bar_nrm_hover',   nrm).runAsync();
+    cotsV.signal('cots_nrm_hover', nrm).runAsync();
+  });
+}).catch(console.error);
 
 // ═══════════════════════════════════════════════════════
-// CHART 2 — GBR Time Series (coral cover + COTS)
+// CHART 2 — GBR Live Coral Cover Time Series
+// Single line, single axis. Disturbance events shown as
+// coloured vertical tick marks at the top of the chart
+// with short rotated labels — not shaded bands.
 // ═══════════════════════════════════════════════════════
 const vis_timeseries = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container", "height": 280,
+  "width": "container",
+  "height": 300,
   "data": {"url": "gbr_annual.csv"},
   "layer": [
-    // Bleaching event bands
+
+    // ── 1. Subtle area fill under the line ───────────────
+    {
+      "mark": {
+        "type": "area",
+        "interpolate": "monotone",
+        "color": C_LIVE,
+        "opacity": 0.07,
+        "line": false
+      },
+      "encoding": {
+        "x": {"field": "year", "type": "quantitative",
+              "scale": {"domain": [1993, 2024], "zero": false},
+              "axis": {"title": null, "tickCount": 8, "labelFontSize": 11,
+                       "grid": false, "format": "d"}},
+        "y": {"field": "mean_live", "type": "quantitative",
+              "scale": {"domain": [8, 38]},
+              "axis": {"title": "Live coral cover (%)", "titleFontSize": 12,
+                       "labelFontSize": 11, "tickCount": 6,
+                       "grid": true, "gridColor": "#edf2f4", "gridOpacity": 1,
+                       "domain": false, "ticks": false}}
+      }
+    },
+
+    // ── 2. Main coral cover line ─────────────────────────
+    {
+      "mark": {
+        "type": "line",
+        "interpolate": "monotone",
+        "color": C_LIVE,
+        "strokeWidth": 2.8
+      },
+      "encoding": {
+        "x": {"field": "year", "type": "quantitative",
+              "scale": {"domain": [1993, 2024], "zero": false}},
+        "y": {"field": "mean_live", "type": "quantitative",
+              "scale": {"domain": [8, 38]}}
+      }
+    },
+
+    // ── 3. Hover points + tooltip ────────────────────────
+    {
+      "params": [{
+        "name": "ts_hover",
+        "select": {"type": "point", "on": "mouseover", "nearest": true, "clear": "mouseout"}
+      }],
+      "mark": {"type": "point", "color": C_LIVE, "filled": true,
+               "size": 50, "stroke": "white", "strokeWidth": 1.5},
+      "encoding": {
+        "x": {"field": "year", "type": "quantitative",
+              "scale": {"domain": [1993, 2024], "zero": false}},
+        "y": {"field": "mean_live", "type": "quantitative",
+              "scale": {"domain": [8, 38]}},
+        "opacity": {
+          "condition": {"param": "ts_hover", "value": 1},
+          "value": 0.15
+        },
+        "tooltip": [
+          {"field": "year",      "title": "Year"},
+          {"field": "mean_live", "title": "Live coral cover %", "format": ".1f"}
+        ]
+      }
+    },
+
+    // ── 4. Disturbance event vertical rules ──────────────
+    // Each major event gets a single vertical line, colour-coded by type.
+    // Only the 6 most narrative-significant events are marked.
     {
       "data": {"values": [
-        {"y1": 1997.5, "y2": 1998.5, "type": "Bleaching"},
-        {"y1": 2001.5, "y2": 2002.5, "type": "Bleaching"},
-        {"y1": 2010.5, "y2": 2012.5, "type": "Cyclone"},
-        {"y1": 2015.5, "y2": 2017.5, "type": "Bleaching"},
-        {"y1": 2019.5, "y2": 2020.5, "type": "Bleaching"}
+        {"year": 1998, "type": "Bleaching",    "label": "Bleaching '98"},
+        {"year": 2002, "type": "Bleaching",    "label": "Bleaching '02"},
+        {"year": 2006, "type": "Cyclone",      "label": "Cyclone Larry"},
+        {"year": 2011, "type": "Cyclone",      "label": "Cyclone Yasi"},
+        {"year": 2012, "type": "COTS",         "label": "COTS peak"},
+        {"year": 2016, "type": "Bleaching",    "label": "Bleaching '16–17"},
+        {"year": 2024, "type": "Bleaching",    "label": "Bleaching '24"}
       ]},
-      "mark": {"type": "rect", "opacity": 0.08},
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 1.2,
+        "strokeDash": [3, 3],
+        "opacity": 0.55
+      },
       "encoding": {
-        "x":  {"field": "y1",   "type": "quantitative"},
-        "x2": {"field": "y2",   "type": "quantitative"},
+        "x": {"field": "year", "type": "quantitative",
+              "scale": {"domain": [1993, 2024], "zero": false}},
         "color": {
           "field": "type", "type": "nominal",
-          "scale": {"domain": ["Bleaching","Cyclone"], "range": [C_DEAD, "#7c3aed"]},
-          "legend": {"title": "Event", "orient": "top-left"}
+          "scale": {
+            "domain": ["Bleaching", "Cyclone", "COTS"],
+            "range":  ["#c0392b",   "#7c3aed",  "#e67e22"]
+          },
+          "legend": {
+            "title": "Disturbance",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "symbolType": "stroke",
+            "symbolDash": [3, 3],
+            "symbolStrokeWidth": 2,
+            "labelFontSize": 10,
+            "titleFontSize": 10,
+            "offset": 4
+          }
         }
       }
     },
-    // Live coral line
+
+    // ── 5. Short angled labels at the top of each rule ───
     {
-      "mark": {"type": "line", "color": C_LIVE, "strokeWidth": 2.5, "interpolate": "monotone"},
+      "data": {"values": [
+        {"year": 1998, "label": "'98",      "col": "#c0392b"},
+        {"year": 2002, "label": "'02",      "col": "#c0392b"},
+        {"year": 2006, "label": "Larry",    "col": "#7c3aed"},
+        {"year": 2011, "label": "Yasi",     "col": "#7c3aed"},
+        {"year": 2012, "label": "COTS",     "col": "#e67e22"},
+        {"year": 2016, "label": "'16–17",   "col": "#c0392b"},
+        {"year": 2024, "label": "'24",      "col": "#c0392b"}
+      ]},
+      "mark": {
+        "type": "text",
+        "fontSize": 9,
+        "fontWeight": 600,
+        "angle": 330,
+        "align": "left",
+        "baseline": "bottom",
+        "dy": -6,
+        "dx": 2
+      },
       "encoding": {
-        "x": {"field": "year", "scale": {"zero": false},"type": "quantitative"},
-        "y": {"field": "mean_live", "type": "quantitative"}
-      }
-    },
-    // Interactive hover points
-    {
-      "params": [{"name": "ts_hover", "select": {"type": "point", "on": "mouseover", "nearest": true, "clear": "mouseout"}}],
-      "mark": {"type": "point", "color": C_LIVE, "size": 55, "filled": true},
-      "encoding": {
-        "x": {"field": "year", "type": "quantitative"},
-        "y": {"field": "mean_live", "type": "quantitative"},
-        "opacity": {"condition": {"param": "ts_hover", "value": 1}, "value": 0.25},
-        "tooltip": [
-          {"field": "year", "title": "Year"},
-          {"field": "mean_live", "title": "Mean Live Coral %", "format": ".1f"},
-          {"field": "mean_dead", "title": "Mean Dead Coral %", "format": ".1f"},
-          {"field": "total_cots", "title": "Total COTS", "format": ","}
-        ]
+        "x": {"field": "year", "type": "quantitative",
+              "scale": {"domain": [1993, 2024], "zero": false}},
+        "y": {"value": 0},
+        "text":  {"field": "label"},
+        "color": {
+          "field": "col", "type": "nominal",
+          "scale": null, "legend": null
+        }
       }
     }
+
   ],
-  "resolve": {"scale": {"y": "independent", "color": "independent"}},
-  "config": {"view": {"stroke": "transparent"}}
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {"labelFont": "Inter, sans-serif", "titleFont": "Inter, sans-serif"}
+  }
 };
 vegaEmbed('#vis-timeseries', vis_timeseries, EMB_OPTS).catch(console.error);
 
@@ -984,10 +1438,8 @@ vegaEmbed('#vis-timeseries', vis_timeseries, EMB_OPTS).catch(console.error);
 const vis_sst_chla = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "params": [
-    {"name": "Year_Sel", "value": 2016,
-     "bind": {"input": "select", "options": [2003, 2016, 2021], "name": "Select Year: "}},
-    {"name": "Month_Sel", "value": 2,
-     "bind": {"input": "range", "min": 1, "max": 12, "step": 1, "name": "Select Month (1=Jan … 12=Dec): "}}
+    {"name": "Year_Sel",  "value": 2003},
+    {"name": "Month_Sel", "value": 2}
   ],
   "resolve": {"scale": {"color": "independent"}},
   "hconcat": [
@@ -997,19 +1449,17 @@ const vis_sst_chla = {
       "projection": {"type": "mercator"},
       "layer": [
         {
-          "data": {"url": "tiny_temperature.csv"},
+          "data": {"url": "sst_prepped.csv"},
           "transform": [
-            {"calculate": "toDate(datum.time)", "as": "dt"},
-            {"filter": "isValid(datum.sea_surface_temperature)"},
-            {"filter": "year(datum.dt) == Year_Sel"},
-            {"filter": "month(datum.dt) + 1 == Month_Sel"}
+            {"filter": "datum.year == Year_Sel"},
+            {"filter": "datum.month == Month_Sel"}
           ],
           "mark": {"type": "square", "size": 400, "opacity": 0.88},
           "encoding": {
             "longitude": {"field": "longitude", "type": "quantitative"},
             "latitude": {"field": "latitude", "type": "quantitative"},
             "color": {
-              "field": "sea_surface_temperature", "type": "quantitative",
+              "field": "sst", "type": "quantitative",
               "scale": {"scheme": "inferno", "domain": [22, 32]},
               "title": "Temp (°C)",
               "legend": {"orient": "bottom", "direction": "horizontal", "gradientLength": 140}
@@ -1017,8 +1467,9 @@ const vis_sst_chla = {
             "tooltip": [
               {"field": "latitude", "title": "Lat", "format": ".2f"},
               {"field": "longitude", "title": "Lon", "format": ".2f"},
-              {"field": "sea_surface_temperature", "title": "SST (°C)", "format": ".1f"},
-              {"field": "dt", "type": "temporal", "title": "Date", "format": "%b %Y"}
+              {"field": "sst", "title": "SST (°C)", "format": ".1f"},
+              {"field": "year", "title": "Year"},
+              {"field": "month", "title": "Month"}
             ]
           }
         },
@@ -1034,19 +1485,17 @@ const vis_sst_chla = {
       "projection": {"type": "mercator"},
       "layer": [
         {
-          "data": {"url": "tiny_chlorophyll.csv"},
+          "data": {"url": "chla_prepped.csv"},
           "transform": [
-            {"calculate": "toDate(datum.time)", "as": "dt"},
-            {"filter": "isValid(datum['chlor_a (mg m-3)'])"},
-            {"filter": "year(datum.dt) == Year_Sel"},
-            {"filter": "month(datum.dt) + 1 == Month_Sel"}
+            {"filter": "datum.year == Year_Sel"},
+            {"filter": "datum.month == Month_Sel"}
           ],
           "mark": {"type": "square", "size": 400, "opacity": 0.88},
           "encoding": {
             "longitude": {"field": "longitude", "type": "quantitative"},
             "latitude": {"field": "latitude", "type": "quantitative"},
             "color": {
-              "field": "chlor_a (mg m-3)", "type": "quantitative",
+              "field": "chlor_a", "type": "quantitative",
               "scale": {"scheme": "greens", "type": "log", "domain": [0.05, 2]},
               "title": "Chla (log)",
               "legend": {"orient": "bottom", "direction": "horizontal", "gradientLength": 140}
@@ -1054,8 +1503,9 @@ const vis_sst_chla = {
             "tooltip": [
               {"field": "latitude", "title": "Lat", "format": ".2f"},
               {"field": "longitude", "title": "Lon", "format": ".2f"},
-              {"field": "chlor_a (mg m-3)", "title": "Chlorophyll-a", "format": ".3f"},
-              {"field": "dt", "type": "temporal", "title": "Date", "format": "%b %Y"}
+              {"field": "chlor_a", "title": "Chlorophyll-a", "format": ".3f"},
+              {"field": "year", "title": "Year"},
+              {"field": "month", "title": "Month"}
             ]
           }
         },
@@ -1068,27 +1518,56 @@ const vis_sst_chla = {
   ],
   "config": {"view": {"stroke": "transparent"}}
 };
-vegaEmbed('#vis-sst-chla', vis_sst_chla, EMB_OPTS).catch(console.error);
+vegaEmbed('#vis-sst-chla', vis_sst_chla, EMB_OPTS_CANVAS).then(res => {
+  const view = res.view;
+  let currentYear = 2003, currentMonth = 2;
+
+  function updateMap(year, month) {
+    currentYear  = year;
+    currentMonth = month;
+    view.signal('Year_Sel',  year)
+        .signal('Month_Sel', month)
+        .runAsync();
+  }
+
+  // Year buttons
+  document.querySelectorAll('.sst-year-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.sst-year-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      updateMap(+btn.dataset.year, currentMonth);
+    });
+  });
+
+  // Month buttons
+  document.querySelectorAll('.sst-month-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.sst-month-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      updateMap(currentYear, +btn.dataset.month);
+    });
+  });
+}).catch(console.error);
 
 // ═══════════════════════════════════════════════════════
 // MAP 4 — Recreation: NRM Choropleth + Linked Bar
 // ═══════════════════════════════════════════════════════
-const ACTIVITY_COLOURS = {
-  "Offshore Fishing":     "#0e7490",
-  "Boating (Owned)":      "#0891b2",
-  "Diving / Snorkelling": "#06b6d4",
-  "Island Visits":        "#22d3ee",
-  "Beach Visits":         "#67e8f9"
-};
+// Activity colours — qualitatively distinct (edit these to restyle across all charts)
+const ACTIVITY_DOMAIN = ["Offshore Fishing","Boating (Owned)","Diving / Snorkelling","Island Visits","Beach Visits"];
+const ACTIVITY_RANGE  = ["#0e7490","#7c3aed","#d97706","#16a34a","#c0392b"];
 const vis_recreation = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {"url": "coastal_recreation_map_data.csv"},
   "hconcat": [
     {
       "title": {"text": "NRM Regions — click to filter", "fontSize": 12, "color": "#374151"},
-      "width": 220, "height": 380,
-      "projection": {"type": "mercator", "center": [147, -19], "scale": 1000},
+      "width": 300, "height": 350,
+      "projection": {"type": "mercator", "center": [142, -10], "scale": 1000},
       "layer": [
+        {
+          "data": {"url": TOPO, "format": {"type": "topojson", "feature": REEF_FEATURE}},
+          "mark":  {"type": "geoshape", "fill": "#e0e0e0", "stroke": "#000000", "strokeWidth": 0.4}
+        },
         {
           "data": {"url": TOPO, "format": {"type": "topojson", "feature": NRM_FEATURE}},
           "transform": [{"lookup": "properties.NAME",
@@ -1099,15 +1578,52 @@ const vis_recreation = {
           "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1.2, "cursor": "pointer"},
           "encoding": {
             "color": {
-              "condition": {"param": "RegionSel", "value": C_HUMAN},
-              "value": "#cbd5e1"
+              "field": "properties.NAME",
+              "type": "nominal",
+              "scale": {"domain": NRM_DOMAIN, "range": NRM_MAP_PASTEL},
+              "legend": null
+            },
+            "opacity": {
+              "condition": {"param": "RegionSel", "value": 0.85},
+              "value": 0.5
+            },
+            "strokeWidth": {
+              "condition": {"param": "RegionSel", "value": 2},
+              "value": 0.2
+            },
+            "stroke": {
+              "condition": {"param": "RegionSel", "value": "#000000"},
+              "value": "black"
             },
             "tooltip": [{"field": "properties.NAME", "title": "NRM Region"}]
           }
-        },
+        }, 
         {
-          "data": {"url": TOPO, "format": {"type": "topojson", "feature": REEF_FEATURE}},
-          "mark": {"type": "geoshape", "fill": "#b2d8d8", "stroke": "#7bbcc0", "strokeWidth": 0.2}
+          "data": {
+            "values": [
+              {"name": "Cape York",         "lon": 144.5, "lat": -13.5},
+              {"name": "Wet Tropics",       "lon": 145.8, "lat": -17.2},
+              {"name": "Burdekin",          "lon": 146.2, "lat": -20.0},
+              {"name": "Mackay Whitsunday", "lon": 152, "lat": -19.5},
+              {"name": "Fitzroy",           "lon": 149.5, "lat": -23.5},
+              {"name": "Burnett Mary",      "lon": 151.5, "lat": -25.5}
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "fontSize": 9,
+            "fontWeight": "600",
+            "fontFamily": "Inter, sans-serif",
+            "align": "center",
+            "baseline": "middle",
+            "dy": 0
+          },
+          "encoding": {
+            "longitude": {"field": "lon", "type": "quantitative"},
+            "latitude":  {"field": "lat", "type": "quantitative"},
+            "text":      {"field": "name", "type": "nominal"},
+            "color":     {"value": "#1e293b"}
+          }
         }
       ]
     },
@@ -1121,12 +1637,9 @@ const vis_recreation = {
         "x": {"field": "Participation_Rate", "type": "quantitative",
               "axis": {"title": "% of Respondents"}, "scale": {"domain": [0, 100]}},
         "color": {
-          "field": "Activity", "type": "nominal",
-          "scale": {
-            "domain": ["Offshore Fishing","Boating (Owned)","Diving / Snorkelling","Island Visits","Beach Visits"],
-            "range": [C_LIVE, "#0891b2", "#06b6d4", "#22d3ee", "#67e8f9"]
-          },
-          "legend": {"orient": "bottom", "columns": 2, "title": null, "labelFontSize": 10}
+          "field": "Region", "type": "nominal",
+          "scale": {"domain": NRM_DOMAIN, "range": NRM_BAR_RANGE},
+          "legend": null
         },
         "tooltip": [
           {"field": "Activity", "title": "Activity"},
@@ -1302,6 +1815,112 @@ const vis_action = {
 vegaEmbed('#vis-action', vis_action, EMB_OPTS).catch(console.error);
 
 // ═══════════════════════════════════════════════════════
+// SECTION 3 — COMPOUND STRESS SCATTER
+// Chart 3b: reef sites plotted by SST anomaly × Chlorophyll-a.
+// Colour encodes live coral cover %. Annotation box marks compound-stress zone.
+// Data source: gbr_compound_stress.csv (synthetic, calibrated to AIMS/NOAA ranges)
+// ═══════════════════════════════════════════════════════
+
+const vis_compound_stress = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 340,
+  "data": {"url": "gbr_compound_stress.csv"},
+  "layer": [
+    // ── Compound-stress zone shaded rectangle ──
+    {
+      "data": {"values": [{"x1": 0.60, "x2": 1.08, "y1": 0.46, "y2": 0.88}]},
+      "mark": {"type": "rect", "opacity": 0.07, "color": "#c0392b"},
+      "encoding": {
+        "x":  {"field": "x1", "type": "quantitative"},
+        "x2": {"field": "x2", "type": "quantitative"},
+        "y":  {"field": "y2", "type": "quantitative"},
+        "y2": {"field": "y1", "type": "quantitative"}
+      }
+    },
+    // ── Compound-stress zone label ──
+    {
+      "data": {"values": [{"x": 0.84, "y": 0.85, "t": "Compound-stress zone"}]},
+      "mark": {
+        "type": "text", "fontSize": 9, "fontStyle": "italic",
+        "color": "#c0392b", "opacity": 0.75
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"},
+        "text": {"field": "t"}
+      }
+    },
+    // ── Scatter points ──
+    {
+      "params": [
+        {
+          "name": "site_hover",
+          "select": {"type": "point", "on": "mouseover", "nearest": true, "clear": "mouseout"}
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "stroke": "white", "strokeWidth": 0.7,
+        "opacity": 0.88
+      },
+      "encoding": {
+        "x": {
+          "field": "SST_Anom", "type": "quantitative",
+          "title": "Peak SST anomaly (°C)",
+          "scale": {"domain": [0.10, 1.08]},
+          "axis": {
+            "grid": true, "gridColor": "#f1f5f9",
+            "domain": false, "ticks": false,
+            "labelFontSize": 11, "titleFontSize": 11,
+            "format": "+.2f"
+          }
+        },
+        "y": {
+          "field": "Chla", "type": "quantitative",
+          "title": "Mean Chlorophyll-a (mg m⁻³)",
+          "scale": {"domain": [0.10, 0.92]},
+          "axis": {
+            "grid": true, "gridColor": "#f1f5f9",
+            "domain": false, "ticks": false,
+            "labelFontSize": 11, "titleFontSize": 11,
+            "format": ".2f"
+          }
+        },
+        "color": {
+          "field": "CoralPct", "type": "quantitative",
+          "title": "Live coral %",
+          "scale": {"scheme": "redyellowgreen", "domain": [5, 52]},
+          "legend": {
+            "orient": "right",
+            "gradientLength": 140,
+            "titleFontSize": 10,
+            "labelFontSize": 10,
+            "title": "Live coral %"
+          }
+        },
+        "size": {
+          "condition": {"param": "site_hover", "value": 160},
+          "value": 65
+        },
+        "tooltip": [
+          {"field": "ReefType", "title": "Reef type"},
+          {"field": "SST_Anom", "title": "SST anomaly (°C)", "format": ".2f"},
+          {"field": "Chla",     "title": "Chlorophyll-a (mg m⁻³)", "format": ".2f"},
+          {"field": "CoralPct", "title": "Live coral cover %", "format": ".1f"}
+        ]
+      }
+    }
+  ],
+  "config": {"view": {"stroke": "transparent"}}
+};
+vegaEmbed('#vis-compound-stress', vis_compound_stress, EMB_OPTS).catch(console.error);
+
+// ═══════════════════════════════════════════════════════
+// COMMERCIAL CHARTS
+// ═══════════════════════════════════════════════════════
+
+// ═══════════════════════════════════════════════════════
 // COMMERCIAL CHARTS
 // ═══════════════════════════════════════════════════════
 const vis_economic_area = {
@@ -1397,105 +2016,6 @@ const vis_economic_area = {
   "config": {"view": {"stroke": "transparent"}}
 };
 vegaEmbed('#vis-economic-area', vis_economic_area, EMB_OPTS).catch(console.error);
-
-const vis_fishing_harvest = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
-  "height": 260,
-  "data": {"url": "gbr_fishing_harvest.csv"},
-  "params": [
-    {
-      "name": "eco_species_sel",
-      "value": "All",
-      "bind": {
-        "input": "select",
-        "options": ["All","Prawns (trawl)","Coral trout","Crab",
-                    "Other reef fish","Saucer scallop","Spanish mackerel"],
-        "name": "Highlight species: "
-      }
-    }
-  ],
-  "layer": [
-    {
-      "data": {"values": [{"y": 100}]},
-      "mark": {"type": "rule", "color": "#94a3b8", "strokeDash": [4,3], "strokeWidth": 1},
-      "encoding": {"y": {"field": "y", "type": "quantitative"}}
-    },
-    {
-      "mark": {"type": "line", "interpolate": "monotone"},
-      "encoding": {
-        "x": {
-          "field": "Year", "type": "quantitative",
-          "axis": {"format": "d", "tickCount": 10, "grid": false,
-                   "domain": false, "title": null, "labelFontSize": 11}
-        },
-        "y": {
-          "field": "Index_2014_100", "type": "quantitative",
-          "axis": {"title": "Harvest index (2014 = 100)", "titleFontSize": 11,
-                   "grid": true, "gridColor": "#f1f5f9", "domain": false,
-                   "tickCount": 5, "format": ".0f"},
-          "scale": {"domain": [0, 125]}
-        },
-        "color": {
-          "field": "Species", "type": "nominal",
-          "scale": {
-            "domain": ["Prawns (trawl)","Coral trout","Crab",
-                       "Other reef fish","Saucer scallop","Spanish mackerel"],
-            "range":  ["#0e7490","#1d4ed8","#e67e22","#60a5fa","#c0392b","#f59e0b"]
-          },
-          "legend": {
-            "title": null, "orient": "bottom", "columns": 3,
-            "labelFontSize": 10, "direction": "horizontal"
-          }
-        },
-        "strokeWidth": {
-          "condition": {
-            "test": "eco_species_sel === 'All' || datum.Species === eco_species_sel",
-            "value": 3
-          },
-          "value": 1
-        },
-        "opacity": {
-          "condition": {
-            "test": "eco_species_sel === 'All' || datum.Species === eco_species_sel",
-            "value": 1
-          },
-          "value": 0.15
-        },
-        "tooltip": [
-          {"field": "Year",           "title": "Year",             "format": "d"},
-          {"field": "Species",        "title": "Species"},
-          {"field": "Harvest_t",      "title": "Harvest (tonnes)", "format": ",.0f"},
-          {"field": "Index_2014_100", "title": "Index (2014=100)", "format": ".1f"}
-        ]
-      }
-    },
-    {
-      "mark": {"type": "point", "filled": true, "size": 50},
-      "encoding": {
-        "x": {"field": "Year", "type": "quantitative"},
-        "y": {"field": "Index_2014_100", "type": "quantitative"},
-        "color": {
-          "field": "Species", "type": "nominal",
-          "scale": {
-            "domain": ["Prawns (trawl)","Coral trout","Crab",
-                       "Other reef fish","Saucer scallop","Spanish mackerel"],
-            "range":  ["#0e7490","#1d4ed8","#e67e22","#60a5fa","#c0392b","#f59e0b"]
-          }
-        },
-        "opacity": {
-          "condition": {
-            "test": "eco_species_sel === 'All' || datum.Species === eco_species_sel",
-            "value": 0.9
-          },
-          "value": 0.08
-        }
-      }
-    }
-  ],
-  "config": {"view": {"stroke": "transparent"}}
-};
-vegaEmbed('#vis-fishing-harvest', vis_fishing_harvest, EMB_OPTS).catch(console.error);
 
 const vis_employment = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
